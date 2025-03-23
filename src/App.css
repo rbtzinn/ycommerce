@@ -1,0 +1,30 @@
+.grid-container {
+    display: flex;
+    gap: 20px; /* Espaço entre o Carousel e os Ads */
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    align-items: stretch; /* Faz os itens ficarem alinhados em altura */
+    max-height: 220px;
+  }
+  
+  .carousel-wrapper {
+    flex: 2; /* Ocupará mais espaço */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .ads-wrapper {
+    flex: 1; /* Ocupará menos espaço */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distribui as propagandas no topo e embaixo */
+  }
+  
+  .ads-wrapper img {
+    width: 100%;
+    height: auto;
+    max-height: 100px; /* Ajuste o tamanho das propagandas */
+    object-fit: cover; /* Garante que a imagem preencha o espaço corretamente */
+  }
+  

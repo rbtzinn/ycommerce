@@ -1,0 +1,11 @@
+.ads-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espaço entre os anúncios */
+  }
+  
+  .ads-container img {
+    width: 100%;
+    max-width: 300px;
+  }
+  
