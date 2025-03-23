@@ -8,7 +8,7 @@ const Navbar = () => {
         <div className="container d-flex justify-content-between">
           <div className="topbar-links">
             <a href="#">Central do Vendedor</a> | 
-            <a href="#">Vender na Shopee</a> | 
+            <a href="#">Vender no site</a> | 
             <a href="#">Baixe o App</a> | 
             <a href="#">Siga-nos</a>
           </div>
