@@ -1,5 +1,5 @@
 import React from 'react';
-import './Container.css';
+import '../Carousel/carousel.css';
 
 const Container = ({ children }) => {
   return (
