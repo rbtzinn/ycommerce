@@ -1,9 +1,9 @@
-import './main.css';
+import './navbar.css';
+import Container from '../Container';
 
 const Navbar = () => {
   return (
     <>
-      {/* Barra superior */}
       <div className="topbar">
         <div className="container d-flex justify-content-between">
           <div className="topbar-links">
@@ -22,32 +22,31 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Navbar Principal */}
       <nav className="navbar navbar-expand-lg main-navbar">
-        <div className="container-fluid">
-          {/* Logo */}
-          <a className="navbar-brand text-white" href="#">
-            <img src="logo.png" alt="LOGO" className="logo" />
-          </a>
+        <div className="navbar-background"></div>
+        <Container>
+          <div className="container-fluid d-flex">
+            <a className="navbar-brand text-white" href="#">
+              <img src="logo.png" alt="LOGO" className="logo" />
+            </a>
 
-          {/* Barra de pesquisa centralizada */}
-          <form className="search-bar">
-            <input
-              className="form-control"
-              type="search"
-              placeholder="Buscar no site"
-              aria-label="Search"
-            />
-            <button className="search-btn" type="submit">
-              <i className="bi bi-search"></i>
-            </button>
-          </form>
+            <form className="search-bar">
+              <input
+                className="form-control"
+                type="search"
+                placeholder="Buscar no site"
+                aria-label="Search"
+              />
+              <button className="search-btn" type="submit">
+                <i className="bi bi-search"></i>
+              </button>
+            </form>
 
-          {/* Ícones à direita */}
-          <div className="nav-icons">
-            <a href="#"><i className="bi bi-cart3"></i></a>
+            <div className="nav-icons">
+              <a href="#"><i className="bi bi-cart3"></i></a>
+            </div>
           </div>
-        </div>
+        </Container>
       </nav>
     </>
   );
