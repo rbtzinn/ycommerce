@@ -1,0 +1,19 @@
+#modal-imagem {
+    transition: transform 0.3s ease;
+    transform-origin: center;
+    width: 100%;
+}
+
+.zoom-container:hover #modal-imagem {
+    transform: scale(1.5);
+    cursor: zoom-in;
+}
+
+.product h2 {
+    font-weight: 300;
+}
+
+.product:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}

@@ -1,5 +1,6 @@
+/* ======= TOPBAR ======= */
 .topbar {
-  background: rgb(103, 61, 230);
+  background: #0d6efd;
   color: white;
   font-size: 14px;
   padding: 5px 0;
@@ -11,29 +12,102 @@
   align-items: center;
 }
 
+.topbar-links, 
+.topbar-options {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
 .topbar a {
   color: white;
   text-decoration: none;
-  margin: 0 5px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 8px;
 }
 
-.main-navbar {
-  background: rgb(103, 61, 230);
-  padding: 15px 0;
-  position: relative;
-  display: flex;
-  justify-content: space-between;
+.pipe {
+  margin: 0 2px;
+}
+
+.topbar-icon i {
+  margin-right: 5px;
+}
+
+.topbar .dropdown .btn {
+  font-size: 14px;
+  color: white;
+  padding: 0 8px;
+  display: inline-flex;
   align-items: center;
 }
 
-.navbar-background {
-  position: absolute;
-  top: 0;
-  left: 0;
+.topbar .dropdown .btn i {
+  margin-right: 5px;
+}
+
+.dropdown-menu {
+  background: #fff !important;
+  border: none !important;
+}
+
+.dropdown-item {
+  color: black !important; 
+  padding: 5px 12px;
+  font-size: 14px;
+}
+
+.dropdown-item:hover {
+  background: #ccc !important;
+  color: black !important; 
+}
+
+.dropdown-item:active {
+  background: #ccc !important;
+  color: black !important;
+}
+
+/* ======= ANIMATED SIDE MENU DROPDOWN ======= */
+.side-menu .dropdown-menu {
+  background: rgba(0, 0, 0, 0.2) !important;
+  border: none !important;
   width: 100%;
-  height: 100%;
-  background-color: #f53d2d;
-  z-index: -1;
+  margin: 0;
+  padding: 0;
+  display: block;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.side-menu .dropdown.show .dropdown-menu {
+  max-height: 200px; /* Ajuste conforme necessário */
+}
+
+.side-menu .dropdown-container {
+  transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+  transform: translateY(0);
+}
+
+.side-menu .dropdown.show ~ .dropdown-container {
+  transform: translateY(100%);
+}
+
+.side-menu .dropdown-item {
+  padding: 12px 20px !important;
+}
+
+@media (max-width: 768px) {
+  .topbar {
+    display: none;
+  }
+}
+
+/* ======= NAVBAR ======= */
+.main-navbar {
+  background: #0d6efd;
+  padding: 10px 0;
 }
 
 .logo {
@@ -42,29 +116,91 @@
 
 .search-bar {
   flex-grow: 1;
-  display: flex;
   max-width: 600px;
-  margin: 0 auto;
+  margin: 0 15px;
+  display: flex;
 }
 
 .search-bar input {
   flex-grow: 1;
   border: none;
-  padding: 10px;
-  border-radius: 5px 0 0 5px;
+  padding: 8px 12px;
+  border-radius: 4px 0 0 4px;
 }
 
 .search-btn {
   background: white;
   border: none;
-  padding: 10px 15px;
-  border-radius: 0 5px 5px 0;
+  padding: 0 12px;
+  border-radius: 0 4px 4px 0;
   cursor: pointer;
 }
 
 .nav-icons a {
   color: white;
+  font-size: 20px;
+  margin-left: 15px;
+}
+
+/* ======= SIDE MENU ======= */
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100vh;
+  background: #0d6efd;
+  padding: 15px;
+  transition: 0.3s ease;
+  z-index: 1000;
+}
+
+.side-menu.open {
+  left: 0;
+}
+
+.menu-logo {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.menu-logo img {
+  width: 120px;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: white;
   font-size: 24px;
-  margin-left: 20px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.side-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.side-menu ul li {
+  padding: 8px 0;
+}
+
+.side-menu ul li a {
+  color: white;
   text-decoration: none;
+  display: block;
+  padding: 5px 0;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
 }

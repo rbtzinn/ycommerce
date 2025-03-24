@@ -1,53 +1,107 @@
-import './navbar.css';
-import Container from '../Container';
+import React, { useState } from "react";
+import "./navbar.css";
+import Container from "../Container";
+import HamburguerMenu from "../HamburguerMenu";
+import { Dropdown } from "react-bootstrap";
 
 const Navbar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const handleDropdownToggle = (isOpen) => {
+    setDropdownOpen(isOpen);
+  };
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
   return (
     <>
-      <div className="topbar">
+      <div className="topbar d-none d-lg-block">
         <div className="container d-flex justify-content-between">
           <div className="topbar-links">
-            <a href="#">Central do Vendedor</a> | 
-            <a href="#">Vender no site</a> | 
-            <a href="#">Baixe o App</a> | 
+            <a href="#">Central do Vendedor</a><span className="pipe">|</span>
+            <a href="#">Vender no site</a><span className="pipe">|</span>
+            <a href="#">Baixe o App</a><span className="pipe">|</span>
             <a href="#">Siga-nos</a>
           </div>
           <div className="topbar-options">
-            <a href="#">Notificações</a> | 
-            <a href="#">Ajuda</a> | 
-            <a href="#">Português - BR</a> | 
-            <a href="#">Cadastrar</a> | 
+            <a href="#" className="topbar-icon">
+              <i className="bi bi-bell"></i> Notificações
+            </a>
+            <span className="pipe">|</span>
+            <a href="#" className="topbar-icon">
+              <i className="bi bi-question-circle"></i> Ajuda
+            </a>
+            <span className="pipe">|</span>
+            <Dropdown align="end">
+              <Dropdown.Toggle variant="link" id="dropdown-custom-components" className="btn">
+                <i className="bi bi-globe"></i> Português - BR
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item href="#">English</Dropdown.Item>
+                <Dropdown.Item href="#">Português - BR</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+            <span className="pipe">|</span>
+            <a href="#">Cadastrar</a><span className="pipe">|</span>
             <a href="#">Entrar</a>
           </div>
         </div>
       </div>
 
       <nav className="navbar navbar-expand-lg main-navbar">
-        <div className="navbar-background"></div>
         <Container>
-          <div className="container-fluid d-flex">
-            <a className="navbar-brand text-white" href="#">
+          <div className="container-fluid d-flex d-lg-flex align-items-center justify-content-between">
+            <HamburguerMenu className="hamburguer-button" toggleMenu={toggleMenu} />
+            <a className="navbar-brand d-none d-lg-flex text-white" href="#">
               <img src="logo.png" alt="LOGO" className="logo" />
             </a>
-
-            <form className="search-bar">
-              <input
-                className="form-control"
-                type="search"
-                placeholder="Buscar no site"
-                aria-label="Search"
-              />
+            <form className="search-bar d-flex d-lg-flex">
+              <input className="form-control" type="search" placeholder="Buscar no site" aria-label="Search" />
               <button className="search-btn" type="submit">
                 <i className="bi bi-search"></i>
               </button>
             </form>
-
-            <div className="nav-icons">
+            <div className="nav-icons d-flex d-lg-block">
               <a href="#"><i className="bi bi-cart3"></i></a>
             </div>
           </div>
         </Container>
       </nav>
+      <div className={`side-menu ${menuOpen ? "open" : ""}`}>
+        <button className="close-btn" onClick={toggleMenu}>&times;</button>
+        <div className="menu-logo">
+          <img src="logo.png" alt="LOGO" />
+        </div>
+        <ul>
+          <li><a href="#">Central do Vendedor</a></li>
+          <li><a href="#">Vender no site</a></li>
+          <li><a href="#">Baixe o App</a></li>
+          <li><a href="#">Siga-nos</a></li>
+          <li><a href="#">Notificações</a></li>
+          <li><a href="#">Ajuda</a></li>
+
+          <li>
+            <Dropdown
+              onToggle={handleDropdownToggle}
+              className={dropdownOpen ? "show" : ""}
+            >
+              <Dropdown.Toggle variant="link" className="text-white w-100 text-start ps-0">
+                <i className="bi bi-globe me-2"></i> Português - BR
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item href="#">English</Dropdown.Item>
+                <Dropdown.Item href="#">Português - BR</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </li>
+
+          <li><a href="#">Cadastrar</a></li>
+          <li><a href="#">Entrar</a></li>
+        </ul>
+      </div>
+      {menuOpen && <div className="overlay" onClick={toggleMenu}></div>}
     </>
   );
 };
