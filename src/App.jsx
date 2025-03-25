@@ -7,19 +7,20 @@ import Destaques from "./components/Destaques";
 import Login from "./components/Login";
 import Cadastro from "./components/Cadastro";
 import Footer from "./components/Footer/index.jsx";
+import Categorias from "./components/Categorias";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './App.css';
 
 function AppContent() {
-  const location = useLocation(); 
+  const location = useLocation();
 
   return (
     <>
 
       {!['/login', '/cadastro'].includes(location.pathname) && <Navbar />}
-      
+
       <Container>
         <Routes>
           <Route path="/" element={
@@ -32,6 +33,7 @@ function AppContent() {
                   <Ads />
                 </div>
               </div>
+              <Categorias />
               <Destaques />
             </>
           } />
@@ -39,7 +41,7 @@ function AppContent() {
           <Route path="/cadastro" element={<Cadastro />} />
         </Routes>
       </Container>
-      <Footer/>
+      <Footer />
     </>
   );
 }

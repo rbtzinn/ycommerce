@@ -16,7 +16,7 @@ const Destaques = () => {
             <h4 className="dest">Destaques</h4>
             <div className="row g-4">
                 {produtos.map((produto) => (
-                    <div key={produto.id} className="col-12 col-sm-6 col-md-4 mb-5 product">
+                    <div key={produto.id} className="col-12 col-sm-6 col-md-3 mb-5 product">
                         <a
                             href="#"
                             className="comprar-btn"
@@ -31,8 +31,8 @@ const Destaques = () => {
                                 <div className="card-body">
                                     <h5 className="card-title">{produto.nome}</h5>
                                     <p className="card-text">{produto.descricao}</p>
-                                    <button className="btn btn-primary btn-sm" style={{ marginRight: "1em" }}><i class="bi bi-currency-dollar"></i> Comprar agora</button>
-                                    <button className="btn btn-primary btn-sm"><i class="bi bi-cart"></i> Adicionar ao carrinho</button>
+                                    <button className="btn btn-primary btn-sm" style={{ marginRight: "1em", marginBottom: "1em"}}><i className="bi bi-currency-dollar"></i> Comprar agora</button>
+                                    <button className="btn btn-primary btn-sm"><i className="bi bi-cart"></i> Adicionar ao carrinho</button>
 
                                 </div>
                             </div>

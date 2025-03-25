@@ -62,6 +62,4 @@ class Sdk {
 
 
 }
-const api = new Sdk()
-const categories = await api.getCategories()
-console.log(categories)
+export default Sdk
