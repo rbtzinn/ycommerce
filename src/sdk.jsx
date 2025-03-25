@@ -2,7 +2,7 @@ import axios from "axios"
 import jQuery from "jquery"
 
 class Sdk {
-    baseUrl = "http://localhost:3000/"
+    baseUrl = "http://ycommerce.thlsn.site"
     constructor() {
 
     }
