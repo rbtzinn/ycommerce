@@ -26,7 +26,7 @@ const Destaques = () => {
                             data-bs-toggle="modal"
                             data-bs-target="#meuModal"
                         >
-                            <div className="card w-100" style={{ width: "18rem" }}>
+                            <div className="card w-100 product-card" style={{ width: "18rem" }}>
                                 <img src={produto.imagem} className="card-img-top" alt={produto.nome} />
                                 <div className="card-body">
                                     <h5 className="card-title">{produto.nome}</h5>

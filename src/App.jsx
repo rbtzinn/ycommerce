@@ -50,4 +50,5 @@ function App() {
   );
 }
 
+import './sdk.jsx';
 export default App;
