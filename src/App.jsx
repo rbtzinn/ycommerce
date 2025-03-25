@@ -6,6 +6,7 @@ import Container from "./components/Container";
 import Destaques from "./components/Destaques";
 import Login from "./components/Login";
 import Cadastro from "./components/Cadastro";
+import Footer from "./components/Footer/index.jsx";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -38,6 +39,7 @@ function AppContent() {
           <Route path="/cadastro" element={<Cadastro />} />
         </Routes>
       </Container>
+      <Footer/>
     </>
   );
 }
