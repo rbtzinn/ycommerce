@@ -15,12 +15,13 @@ class Sdk {
         if (method == 'POST') {
             config.data = data
         } else if (method == 'GET') {
-            config.params = $.param(data)
+            config.params = jQuery.param(data)
         }
 
         config.data = data
         const res = await axios(config)
-        return JSON.parse(res.data)
+         
+        return res.data
     }
     async authUser(email, password) {
         res = await this.http('POST', '/auth/login', {
@@ -33,7 +34,7 @@ class Sdk {
         res = await this.http('POST', '/auth/register-shop', {
             email: email,
             password: password,
-            storeName: storeName
+            shopName: shopName
         })
         return res
     }
@@ -46,17 +47,21 @@ class Sdk {
         return res
     }
 
-    getCategories() {
-        const categories = this.http('GET', '/categories')
+    async getCategories() {
+        const categories = await this.http('GET', '/categories')
         return categories
     }
-    searchProducts(query, page = 1) {
+    async searchProducts(query, page = 1) {
         const products = this.http('GET', '/products?query=' + query)
+        return products
     }
-    getHighlights() {
-        const highlights = this.http('GET', '/highlights')
+    async getHighlights() {
+        const highlights = await this.http('GET', '/highlights')
+        return highlights
     }
 
 
 }
-
+const api = new Sdk()
+const categories = await api.getCategories()
+console.log(categories)
