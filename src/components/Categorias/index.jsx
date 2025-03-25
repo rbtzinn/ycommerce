@@ -21,8 +21,7 @@ const Categorias = () => {
                 {
                     categories.map(c => {
                         return (
-
-                            <a className="categoria" key={`${c.id}`} href={`/categories/${c.slug}`}>
+                            <a className="categoria" key={`${c.slug}`} href={`/categories/${c.slug}`}>
                                 <>
                                     <div className="img" style={{ backgroundImage: `url('${c.icon}')` }}></div>
                                 </>
