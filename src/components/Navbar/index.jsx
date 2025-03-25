@@ -3,6 +3,7 @@ import "./navbar.css";
 import Container from "../Container";
 import HamburguerMenu from "../HamburguerMenu";
 import { Dropdown } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -44,8 +45,8 @@ const Navbar = () => {
               </Dropdown.Menu>
             </Dropdown>
             <span className="pipe">|</span>
-            <a href="#">Cadastrar</a><span className="pipe">|</span>
-            <a href="#">Entrar</a>
+            <Link to="/cadastro">Cadastrar</Link><span className="pipe">|</span>
+            <Link to="/login">Entrar</Link>
           </div>
         </div>
       </div>
@@ -54,9 +55,9 @@ const Navbar = () => {
         <Container>
           <div className="container-fluid d-flex d-lg-flex align-items-center justify-content-between">
             <HamburguerMenu className="hamburguer-button" toggleMenu={toggleMenu} />
-            <a className="navbar-brand d-none d-lg-flex text-white" href="#">
+            <Link className="navbar-brand d-none d-lg-flex text-white" to="/">
               <img src="logo.png" alt="LOGO" className="logo" />
-            </a>
+            </Link>
             <form className="search-bar d-flex d-lg-flex">
               <input className="form-control" type="search" placeholder="Buscar no site" aria-label="Search" />
               <button className="search-btn" type="submit">
@@ -97,8 +98,8 @@ const Navbar = () => {
             </Dropdown>
           </li>
 
-          <li><a href="#">Cadastrar</a></li>
-          <li><a href="#">Entrar</a></li>
+          <li><Link to="/cadastro">Cadastrar</Link></li>
+          <li><Link to="/login">Entrar</Link></li>
         </ul>
       </div>
       {menuOpen && <div className="overlay" onClick={toggleMenu}></div>}
