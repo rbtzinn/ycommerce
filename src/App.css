@@ -1,39 +1,45 @@
   .grid-container {
-      display: flex;
-      gap: 8px; 
-      padding-top: 20px;
-      padding-bottom: 20px;
-      align-items: center;
+    display: flex;
+    gap: 8px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    align-items: center;
+  }
+
+  .carousel-wrapper {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ads-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .ads-wrapper img {
+    width: 100%;
+    height: auto;
+    max-height: 106px;
+    object-fit: cover;
+  }
+
+  .product-card {
+    padding: 1em;
+  }
+
+  @media (max-width: 768px) {
+    .grid-container {
+      display: block;
     }
-    
+
     .carousel-wrapper {
-      flex: 2;
-      display: flex;
-      flex-direction: column;
+      margin-bottom: 8px;
     }
-    
-    .ads-wrapper {
-      flex: 1; 
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between; 
-    }
-    
+
     .ads-wrapper img {
-      width: 100%;
-      height: auto;
-      max-height: 106px;
-      object-fit: cover;
+      max-height: 80px;
     }
-    
-    @media (max-width: 768px) {
-      .grid-container {
-        display: block;
-      }
-      .carousel-wrapper {
-        margin-bottom: 8px;
-      }
-      .ads-wrapper img {
-        max-height: 80px;
-      }
-    }
+  }

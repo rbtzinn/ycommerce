@@ -6,13 +6,14 @@ import Destaques from "./components/Destaques";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+
 import './App.css';
 
 function App() {
   return (
     <div>
-        <Navbar />
-      <Container> 
+      <Navbar />
+      <Container>
         <div className="grid-container">
           <div className="carousel-wrapper">
             <Carousel />
@@ -22,11 +23,11 @@ function App() {
           </div>
         </div>
         <div>
-        <Destaques/>
+          <Destaques />
         </div>
       </Container>
-    </div>
+    </div> 
   );
 }
-
+import './sdk.jsx';
 export default App;
