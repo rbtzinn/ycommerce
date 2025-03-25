@@ -13,8 +13,8 @@ const produtos = [
 const Destaques = () => {
     return (
         <div className="container-dest bg-light rounded p-3">
-            <h1 className="dest">Destaques</h1>
-            <div className="row g-3">
+            <h4 className="dest">Destaques</h4>
+            <div className="row g-4">
                 {produtos.map((produto) => (
                     <div key={produto.id} className="col-12 col-sm-6 col-md-4 mb-5 product">
                         <a
@@ -26,12 +26,14 @@ const Destaques = () => {
                             data-bs-toggle="modal"
                             data-bs-target="#meuModal"
                         >
-                            <div className="card w-100 product-card" style={{ width: "18rem" }}>
-                                <img src={produto.imagem} className="card-img-top" alt={produto.nome} />
+                            <div className="card w-100 product-card">
+                                <img src={"https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="} className="card-img-top" alt={produto.nome} />
                                 <div className="card-body">
                                     <h5 className="card-title">{produto.nome}</h5>
                                     <p className="card-text">{produto.descricao}</p>
-                                    <button className="btn btn-primary">Comprar</button>
+                                    <button className="btn btn-primary btn-sm" style={{ marginRight: "1em" }}><i class="bi bi-currency-dollar"></i> Comprar agora</button>
+                                    <button className="btn btn-primary btn-sm"><i class="bi bi-cart"></i> Adicionar ao carrinho</button>
+
                                 </div>
                             </div>
                         </a>
@@ -47,7 +49,7 @@ const Destaques = () => {
                         </div>
                         <div className="modal-body">
                             <div className="zoom-container">
-                                <img id="modal-imagem" src="" alt="Imagem do Produto" className="img-fluid mb-3" />
+                                <img id="modal-imagem" src="https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=" alt="Imagem do Produto" className="img-fluid mb-3" />
                             </div>
                             <p id="modal-descricao">Descrição do Produto</p>
                         </div>
