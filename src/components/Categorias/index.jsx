@@ -1,16 +1,17 @@
- 
+
 import React, { useEffect, useState } from "react"
 import Sdk from "../../sdk"
 import './categorias.css'
 
-let html = ''
+
 const Categorias = () => {
+    var html = ''
     const [categories, setCategories] = useState([]);
 
     const [banners, setBanners] = useState([])
-    let ran = false
+    var ran = false
     const main = () => {
-       
+
         if (ran) return;
         ran = true
         useEffect(() => {
@@ -23,6 +24,7 @@ const Categorias = () => {
                 let active = ' active'
                 setCategories(await api.getCategories())
                 setBanners(await api.getBanners())
+                console.log(banners)
                 banners.map(banner => {
                     console.log(banner)
                     html += `
@@ -35,16 +37,17 @@ const Categorias = () => {
               </div>`
                     active = ''
                 })
-
+                console.log('here')
+                console.log(html)
                 document.getElementById('carousel-items').innerHTML = html
 
             }
 
             fetchData()
-        })
+        }, [])
     }
     main()
- 
+
     return (
         <>
             <h4>Principais categorias</h4>

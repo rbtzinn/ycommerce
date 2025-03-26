@@ -2,7 +2,7 @@ import axios from "axios"
 import jQuery from "jquery"
 
 class Sdk {
-    baseUrl = "http://localhost:3000/"
+    baseUrl = process.env.REACT_APP_API_URL
     constructor() {
 
     }
@@ -54,6 +54,7 @@ class Sdk {
 
     async getBanners() {
         const banners = await this.http('GET', '/banners')
+    
         return banners
     }
 
