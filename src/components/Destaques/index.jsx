@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import './destaques.css'
 
 const produtos = [
@@ -11,6 +11,32 @@ const produtos = [
 ];
 
 const Destaques = () => {
+    useEffect(() => {
+        const zoomContainer = document.querySelector('.zoom-container');
+        const modalImagem = document.getElementById('modal-imagem');
+
+        const handleMouseMove = (e) => {
+            const rect = zoomContainer.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            modalImagem.style.transformOrigin = `${x}px ${y}px`;
+            modalImagem.style.transform = 'scale(1.5)';
+        };
+
+        const handleMouseLeave = () => {
+            modalImagem.style.transform = 'scale(1)';
+        };
+
+        zoomContainer.addEventListener('mousemove', handleMouseMove);
+        zoomContainer.addEventListener('mouseleave', handleMouseLeave);
+
+        return () => {
+            zoomContainer.removeEventListener('mousemove', handleMouseMove);
+            zoomContainer.removeEventListener('mouseleave', handleMouseLeave);
+        };
+    }, []);
+
     return (
         <div className="container-dest bg-light rounded p-3">
             <h4 className="dest">Destaques</h4>
@@ -27,13 +53,20 @@ const Destaques = () => {
                             data-bs-target="#meuModal"
                         >
                             <div className="card w-100 product-card">
-                                <img src={"https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="} className="card-img-top" alt={produto.nome} />
+                                <img 
+                                    src={"https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="} 
+                                    className="card-img-top" 
+                                    alt={produto.nome} 
+                                />
                                 <div className="card-body">
                                     <h5 className="card-title">{produto.nome}</h5>
                                     <p className="card-text">{produto.descricao}</p>
-                                    <button className="btn btn-primary btn-sm" style={{ marginRight: "1em", marginBottom: "1em"}}><i className="bi bi-currency-dollar"></i> Comprar agora</button>
-                                    <button className="btn btn-primary btn-sm"><i className="bi bi-cart"></i> Adicionar ao carrinho</button>
-
+                                    <button className="btn btn-primary btn-sm" style={{ marginRight: "1em", marginBottom: "1em"}}>
+                                        <i className="bi bi-currency-dollar"></i> Comprar agora
+                                    </button>
+                                    <button className="btn btn-primary btn-sm">
+                                        <i className="bi bi-cart"></i> Adicionar ao carrinho
+                                    </button>
                                 </div>
                             </div>
                         </a>
@@ -49,7 +82,12 @@ const Destaques = () => {
                         </div>
                         <div className="modal-body">
                             <div className="zoom-container">
-                                <img id="modal-imagem" src="https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=" alt="Imagem do Produto" className="img-fluid mb-3" />
+                                <img 
+                                    id="modal-imagem" 
+                                    src={"https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="}
+                                    alt="Imagem do Produto" 
+                                    className="img-fluid mb-3" 
+                                />
                             </div>
                             <p id="modal-descricao">Descrição do Produto</p>
                         </div>

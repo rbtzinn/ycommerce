@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+
   const handleDropdownToggle = (isOpen) => {
     setDropdownOpen(isOpen);
   };
@@ -18,58 +19,74 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="topbar d-none d-lg-block">
-        <div className="container d-flex justify-content-between">
-          <div className="topbar-links">
-            <a href="#">Central do Vendedor</a><span className="pipe">|</span>
-            <a href="#">Vender no site</a><span className="pipe">|</span>
-            <a href="#">Baixe o App</a><span className="pipe">|</span>
-            <a href="#">Siga-nos</a>
-          </div>
-          <div className="topbar-options">
-            <a href="#" className="topbar-icon">
-              <i className="bi bi-bell"></i> Notificações
-            </a>
-            <span className="pipe">|</span>
-            <a href="#" className="topbar-icon">
-              <i className="bi bi-question-circle"></i> Ajuda
-            </a>
-            <span className="pipe">|</span>
-            <Dropdown align="end">
-              <Dropdown.Toggle variant="link" id="dropdown-custom-components" className="btn">
-                <i className="bi bi-globe"></i> Português - BR
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                <Dropdown.Item href="#">English</Dropdown.Item>
-                <Dropdown.Item href="#">Português - BR</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-            <span className="pipe">|</span>
-            <Link to="/cadastro">Cadastrar</Link><span className="pipe">|</span>
-            <Link to="/login">Entrar</Link>
-          </div>
-        </div>
-      </div>
-
-      <nav className="navbar navbar-expand-lg main-navbar">
+      <nav className="main-navbar">
         <Container>
-          <div className="container-fluid d-flex d-lg-flex align-items-center justify-content-between">
+          {/* Seção Superior (Desktop) */}
+          <div className="topbar-section d-none d-lg-flex justify-content-between">
+            <div className="topbar-links">
+              <a href="#">Central do Vendedor</a>
+              <span className="pipe">|</span>
+              <a href="#">Vender no site</a>
+              <span className="pipe">|</span>
+              <a href="#">Baixe o App</a>
+              <span className="pipe">|</span>
+              <a href="#">Siga-nos</a>
+            </div>
+            <div className="topbar-options">
+              <a href="#" className="topbar-icon">
+                <i className="bi bi-bell"></i> Notificações
+              </a>
+              <span className="pipe">|</span>
+              <a href="#" className="topbar-icon">
+                <i className="bi bi-question-circle"></i> Ajuda
+              </a>
+              <span className="pipe">|</span>
+              <Dropdown align="end">
+                <Dropdown.Toggle variant="link" className="btn">
+                  <i className="bi bi-globe"></i> Português - BR
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item href="#">English</Dropdown.Item>
+                  <Dropdown.Item href="#">Português - BR</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+              <span className="pipe">|</span>
+              <Link to="/cadastro">Cadastrar</Link>
+              <span className="pipe">|</span>
+              <Link to="/login">Entrar</Link>
+            </div>
+          </div>
+
+          {/* Conteúdo Principal */}
+          <div className="navbar-content container-fluid d-flex align-items-center justify-content-between">
             <HamburguerMenu className="hamburguer-button" toggleMenu={toggleMenu} />
+            
             <Link className="navbar-brand d-none d-lg-flex text-white" to="/">
               <img src="logo.png" alt="LOGO" className="logo" />
             </Link>
-            <form className="search-bar d-flex d-lg-flex">
-              <input className="form-control" type="search" placeholder="Buscar no site" aria-label="Search" />
+
+            <form className="search-bar d-flex">
+              <input
+                className="form-control"
+                type="search"
+                placeholder="Buscar no site"
+                aria-label="Search"
+              />
               <button className="search-btn" type="submit">
                 <i className="bi bi-search"></i>
               </button>
             </form>
-            <div className="nav-icons d-flex d-lg-block">
-              <a href="#"><i className="bi bi-cart3"></i></a>
+
+            <div className="nav-icons d-flex">
+              <a href="#">
+                <i className="bi bi-cart3"></i>
+              </a>
             </div>
           </div>
         </Container>
       </nav>
+
+      {/* Menu Lateral Mobile */}
       <div className={`side-menu ${menuOpen ? "open" : ""}`}>
         <button className="close-btn" onClick={toggleMenu}>&times;</button>
         <div className="menu-logo">
@@ -82,7 +99,6 @@ const Navbar = () => {
           <li><a href="#">Siga-nos</a></li>
           <li><a href="#">Notificações</a></li>
           <li><a href="#">Ajuda</a></li>
-
           <li>
             <Dropdown
               onToggle={handleDropdownToggle}
@@ -97,7 +113,6 @@ const Navbar = () => {
               </Dropdown.Menu>
             </Dropdown>
           </li>
-
           <li><Link to="/cadastro">Cadastrar</Link></li>
           <li><Link to="/login">Entrar</Link></li>
         </ul>
