@@ -1,5 +1,7 @@
-import React, { useEffect } from "react";
-import './destaques.css'
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useCart } from "../../context/CartContext"; // Importa o contexto do carrinho
+import './destaques.css';
 
 const produtos = [
     { id: 1, nome: "Produto 1", descricao: "Sapato Nike branco", imagem: "/images/produto1.jpg" },
@@ -11,31 +13,12 @@ const produtos = [
 ];
 
 const Destaques = () => {
-    useEffect(() => {
-        const zoomContainer = document.querySelector('.zoom-container');
-        const modalImagem = document.getElementById('modal-imagem');
+    const navigate = useNavigate();
+    const { addToCart } = useCart(); // Obtém a função de adicionar ao carrinho
 
-        const handleMouseMove = (e) => {
-            const rect = zoomContainer.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            modalImagem.style.transformOrigin = `${x}px ${y}px`;
-            modalImagem.style.transform = 'scale(1.5)';
-        };
-
-        const handleMouseLeave = () => {
-            modalImagem.style.transform = 'scale(1)';
-        };
-
-        zoomContainer.addEventListener('mousemove', handleMouseMove);
-        zoomContainer.addEventListener('mouseleave', handleMouseLeave);
-
-        return () => {
-            zoomContainer.removeEventListener('mousemove', handleMouseMove);
-            zoomContainer.removeEventListener('mouseleave', handleMouseLeave);
-        };
-    }, []);
+    const handleComprarAgora = (id) => {
+        navigate(`/reviews/${id}`);
+    };
 
     return (
         <div className="container-dest bg-light rounded p-3">
@@ -43,62 +26,32 @@ const Destaques = () => {
             <div className="row g-4">
                 {produtos.map((produto) => (
                     <div key={produto.id} className="col-12 col-sm-6 col-md-3 mb-5 product">
-                        <a
-                            href="#"
-                            className="comprar-btn"
-                            data-nome={produto.nome}
-                            data-descricao={produto.descricao}
-                            data-imagem={produto.imagem}
-                            data-bs-toggle="modal"
-                            data-bs-target="#meuModal"
-                        >
-                            <div className="card w-100 product-card">
-                                <img 
-                                    src={"https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="} 
-                                    className="card-img-top" 
-                                    alt={produto.nome} 
-                                />
-                                <div className="card-body">
-                                    <h5 className="card-title">{produto.nome}</h5>
-                                    <p className="card-text">{produto.descricao}</p>
-                                    <button className="btn btn-primary btn-sm" style={{ marginRight: "1em", marginBottom: "1em"}}>
-                                        <i className="bi bi-currency-dollar"></i> Comprar agora
-                                    </button>
-                                    <button className="btn btn-primary btn-sm">
-                                        <i className="bi bi-cart"></i> Adicionar ao carrinho
-                                    </button>
-                                </div>
+                        <div className="card w-100 product-card">
+                            <img 
+                                src={"https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="} 
+                                className="card-img-top" 
+                                alt={produto.nome} 
+                            />
+                            <div className="card-body">
+                                <h5 className="card-title">{produto.nome}</h5>
+                                <p className="card-text">{produto.descricao}</p>
+                                <button 
+                                    className="btn btn-primary btn-sm" 
+                                    style={{ marginRight: "1em", marginBottom: "1em"}} 
+                                    onClick={() => handleComprarAgora(produto.id)}
+                                >
+                                    <i className="bi bi-currency-dollar"></i> Comprar agora
+                                </button>
+                                <button 
+                                    className="btn btn-primary btn-sm"
+                                    onClick={() => addToCart(produto)}
+                                >
+                                    <i className="bi bi-cart"></i> Adicionar ao carrinho
+                                </button>
                             </div>
-                        </a>
+                        </div>
                     </div>
                 ))}
-            </div>
-            <div className="modal fade" id="meuModal" tabIndex="-1" aria-labelledby="modalLabel" aria-hidden="true">
-                <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h1 className="modal-title fs-5" id="modal-nome">Título do Produto</h1>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div className="modal-body">
-                            <div className="zoom-container">
-                                <img 
-                                    id="modal-imagem" 
-                                    src={"https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="}
-                                    alt="Imagem do Produto" 
-                                    className="img-fluid mb-3" 
-                                />
-                            </div>
-                            <p id="modal-descricao">Descrição do Produto</p>
-                        </div>
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
-                                Fechar
-                            </button>
-                            <button type="button" className="btn btn-primary">Adicionar ao Carrinho</button>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     );

@@ -4,10 +4,12 @@ import Container from "../Container";
 import HamburguerMenu from "../HamburguerMenu";
 import { Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useCart } from "../../context/CartContext";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const { cartCount } = useCart();
 
   const handleDropdownToggle = (isOpen) => {
     setDropdownOpen(isOpen);
@@ -21,7 +23,6 @@ const Navbar = () => {
     <>
       <nav className="main-navbar">
         <Container>
-          {/* Seção Superior (Desktop) */}
           <div className="topbar-section d-none d-lg-flex justify-content-between">
             <div className="topbar-links">
               <a href="#">Central do Vendedor</a>
@@ -60,7 +61,7 @@ const Navbar = () => {
           {/* Conteúdo Principal */}
           <div className="navbar-content container-fluid d-flex align-items-center justify-content-between">
             <HamburguerMenu className="hamburguer-button" toggleMenu={toggleMenu} />
-            
+
             <Link className="navbar-brand d-none d-lg-flex text-white" to="/">
               <img src="logo.png" alt="LOGO" className="logo" />
             </Link>
@@ -78,9 +79,10 @@ const Navbar = () => {
             </form>
 
             <div className="nav-icons d-flex">
-              <a href="#">
+              <Link to="/carrinho">
                 <i className="bi bi-cart3"></i>
-              </a>
+                {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
+              </Link>
             </div>
           </div>
         </Container>

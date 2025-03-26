@@ -8,8 +8,10 @@ import Login from "./components/Login";
 import Cadastro from "./components/Cadastro";
 import Footer from "./components/Footer/index.jsx";
 import Categorias from "./components/Categorias";
+import Reviews from "./components/Reviews"; // Importação da nova página de Reviews
 import React from "react";
 import { useState } from "react";
+import { CartProvider } from "./context/CartContext";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -20,7 +22,6 @@ function AppContent() {
 
   return (
     <>
-
       {!['/login', '/cadastro'].includes(location.pathname) && <Navbar />}
 
       <Container>
@@ -41,8 +42,10 @@ function AppContent() {
           } />
           <Route path="/login" element={<Login />} />
           <Route path="/cadastro" element={<Cadastro />} />
+          <Route path="/reviews/:id" element={<Reviews />} /> {/* Nova rota para a página de Reviews */}
         </Routes>
       </Container>
+
       <Footer />
     </>
   );
@@ -50,9 +53,11 @@ function AppContent() {
 
 function App() {
   return (
-    <Router>
-      <AppContent />
-    </Router>
+    <CartProvider>
+      <Router>
+        <AppContent />
+      </Router>
+    </CartProvider>
   );
 }
 
