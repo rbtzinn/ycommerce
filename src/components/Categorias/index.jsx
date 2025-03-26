@@ -5,41 +5,18 @@ import './categorias.css'
 
 
 const Categorias = () => {
-    var html = ''
+
     const [categories, setCategories] = useState([]);
 
-    const [banners, setBanners] = useState([])
-    var ran = false
     const main = () => {
 
-        if (ran) return;
-        ran = true
         useEffect(() => {
 
-            if (html != '') {
-                return
-            }
+
             const fetchData = async () => {
                 const api = new Sdk();
                 let active = ' active'
                 setCategories(await api.getCategories())
-                setBanners(await api.getBanners())
-                console.log(banners)
-                banners.map(banner => {
-                    console.log(banner)
-                    html += `
-                    <div class="carousel-item${active}">
-                        <img
-                            src="${banner.image}"
-                            class="d-block w-100"
-                            alt="${banner.alt}"
-                        />
-              </div>`
-                    active = ''
-                })
-                console.log('here')
-                console.log(html)
-                document.getElementById('carousel-items').innerHTML = html
 
             }
 

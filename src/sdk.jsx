@@ -4,8 +4,7 @@ import jQuery from "jquery"
 class Sdk {
     baseUrl = process.env.REACT_APP_API_URL || 'https://ycommerce.thlsn.site'
     constructor() {
-        console.log('baseUrl:')
-        console.log(this.baseUrl)
+        
     }
     async http(method, url, data) {
         const config = {

@@ -6,27 +6,41 @@ import "./carousel.css";
 import Sdk from "../../sdk";
 
 const Carousel = () => {
-  useEffect(() => {
-    const fetchData = async () => {
-      const api = new Sdk();
-    }
-    fetchData()
+  const api = new Sdk();
+  const [banners, setBanners] = useState([])
+  const main = () => {
+    useEffect(() => {
+      const fetchData = async () => {
+        const banners = await api.getBanners()
+        console.log('banners:')
+        setBanners(banners)
+        console.log(banners)
+      }
+      fetchData()
+    }, [])
+  }
 
-  })
-  let firstBanner = ' active'
-  let banners_ = ''
+  main()
 
 
   return (
 
-    <div className="carousel-container">
+    <div className="carousel-container" >
       <div
         id="carouselExampleAutoplaying"
         className="carousel slide"
         data-bs-ride="carousel"
       >
         <div className="carousel-inner" id="carousel-items">
-
+          {banners.map(banner => (
+            <div className="carousel-item active" key={banner.image}>
+              <img
+                src={banner.image}
+                className="d-block w-100"
+                alt={banner.alt}
+              />
+            </div>
+          ))}
         </div>
 
         <button
