@@ -8,6 +8,8 @@ import Login from "./components/Login";
 import Cadastro from "./components/Cadastro";
 import Footer from "./components/Footer/index.jsx";
 import Categorias from "./components/Categorias";
+import React from "react";
+import { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap-icons/font/bootstrap-icons.css';

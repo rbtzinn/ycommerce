@@ -2,7 +2,7 @@ import axios from "axios"
 import jQuery from "jquery"
 
 class Sdk {
-    baseUrl = "http://ycommerce.thlsn.site"
+    baseUrl = "http://localhost:3000/"
     constructor() {
 
     }
@@ -51,6 +51,12 @@ class Sdk {
         const categories = await this.http('GET', '/categories')
         return categories
     }
+
+    async getBanners() {
+        const banners = await this.http('GET', '/banners')
+        return banners
+    }
+
     async searchProducts(query, page = 1) {
         const products = this.http('GET', '/products?query=' + query)
         return products

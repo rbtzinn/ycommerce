@@ -1,36 +1,34 @@
+import { useEffect, useState } from "react";
+import React from "react";
+import createDOMPurify from 'dompurify'
+import default_ from "dompurify";
 import "./carousel.css";
+import Sdk from "../../sdk";
 
 const Carousel = () => {
+  useEffect(() => {
+    const fetchData = async () => {
+      const api = new Sdk();
+    }
+    fetchData()
+
+  })
+  let firstBanner = ' active'
+  let banners_ = ''
+
+
   return (
+
     <div className="carousel-container">
       <div
         id="carouselExampleAutoplaying"
         className="carousel slide"
         data-bs-ride="carousel"
       >
-        <div className="carousel-inner">
-          <div className="carousel-item active">
-            <img
-              src="https://placehold.co/800x400"
-              className="d-block w-100"
-              alt="Slide 1"
-            />
-          </div>
-          <div className="carousel-item">
-            <img
-              src="https://placehold.co/800x400"
-              className="d-block w-100"
-              alt="Slide 2"
-            />
-          </div>
-          <div className="carousel-item">
-            <img
-              src="https://placehold.co/800x400"
-              className="d-block w-100"
-              alt="Slide 3"
-            />
-          </div>
+        <div className="carousel-inner" id="carousel-items">
+
         </div>
+
         <button
           className="carousel-control-prev"
           type="button"
@@ -40,6 +38,7 @@ const Carousel = () => {
           <span className="carousel-control-prev-icon" aria-hidden="true"></span>
           <span className="visually-hidden">Previous</span>
         </button>
+
         <button
           className="carousel-control-next"
           type="button"
@@ -50,7 +49,8 @@ const Carousel = () => {
           <span className="visually-hidden">Next</span>
         </button>
       </div>
-    </div>
+    </div >
+
   );
 };
 

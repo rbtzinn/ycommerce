@@ -1,18 +1,50 @@
-import React, { useEffect, useState } from "react";
-import Sdk from "../../sdk";
-import "./categorias.css";
+ 
+import React, { useEffect, useState } from "react"
+import Sdk from "../../sdk"
+import './categorias.css'
 
+let html = ''
 const Categorias = () => {
     const [categories, setCategories] = useState([]);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const api = new Sdk();
-            setCategories(await api.getCategories());
-        };
-        fetchData();
-    }, []);
+    const [banners, setBanners] = useState([])
+    let ran = false
+    const main = () => {
+       
+        if (ran) return;
+        ran = true
+        useEffect(() => {
 
+            if (html != '') {
+                return
+            }
+            const fetchData = async () => {
+                const api = new Sdk();
+                let active = ' active'
+                setCategories(await api.getCategories())
+                setBanners(await api.getBanners())
+                banners.map(banner => {
+                    console.log(banner)
+                    html += `
+                    <div class="carousel-item${active}">
+                        <img
+                            src="${banner.image}"
+                            class="d-block w-100"
+                            alt="${banner.alt}"
+                        />
+              </div>`
+                    active = ''
+                })
+
+                document.getElementById('carousel-items').innerHTML = html
+
+            }
+
+            fetchData()
+        })
+    }
+    main()
+ 
     return (
         <>
             <h4>Principais categorias</h4>
