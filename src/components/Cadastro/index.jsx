@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import React from 'react';
 import './cadastro.css';
 
 const Cadastro = () => {

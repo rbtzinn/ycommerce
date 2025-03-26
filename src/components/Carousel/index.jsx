@@ -1,39 +1,35 @@
 import { useEffect, useState } from "react";
 import React from "react";
-import createDOMPurify from 'dompurify'
-import default_ from "dompurify";
 import "./carousel.css";
 import Sdk from "../../sdk";
 
 const Carousel = () => {
   const api = new Sdk();
-  const [banners, setBanners] = useState([])
-  const main = () => {
-    useEffect(() => {
-      const fetchData = async () => {
-        const banners = await api.getBanners()
-        console.log('banners:')
-        setBanners(banners)
-        console.log(banners)
-      }
-      fetchData()
-    }, [])
-  }
+  const [banners, setBanners] = useState([]);
 
-  main()
-
+  useEffect(() => {
+    const fetchData = async () => {
+      const bannersData = await api.getBanners();
+      console.log('banners:');
+      setBanners(bannersData);
+      console.log(bannersData);
+    };
+    fetchData();
+  }, []);
 
   return (
-
-    <div className="carousel-container" >
+    <div className="carousel-container">
       <div
         id="carouselExampleAutoplaying"
         className="carousel slide"
         data-bs-ride="carousel"
       >
         <div className="carousel-inner" id="carousel-items">
-          {banners.map(banner => (
-            <div className="carousel-item active" key={banner.image}>
+          {banners.map((banner, index) => (
+            <div
+              className={`carousel-item ${index === 0 ? "active" : ""}`}
+              key={banner.image}
+            >
               <img
                 src={banner.image}
                 className="d-block w-100"
@@ -63,8 +59,7 @@ const Carousel = () => {
           <span className="visually-hidden">Next</span>
         </button>
       </div>
-    </div >
-
+    </div>
   );
 };
 

@@ -1,3 +1,4 @@
+import React from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Carousel from "./components/Carousel";
@@ -8,18 +9,17 @@ import Login from "./components/Login";
 import Cadastro from "./components/Cadastro";
 import Footer from "./components/Footer/index.jsx";
 import Categorias from "./components/Categorias";
-import Reviews from "./components/Reviews"; // Importação da nova página de Reviews
-import React from "react";
-import { useState } from "react";
+import Reviews from "./components/Reviews";
 import { CartProvider } from "./context/CartContext";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './App.css';
+import './sdk.jsx';
 
 function AppContent() {
   const location = useLocation();
-
+  
   return (
     <>
       {!['/login', '/cadastro'].includes(location.pathname) && <Navbar />}
@@ -42,7 +42,7 @@ function AppContent() {
           } />
           <Route path="/login" element={<Login />} />
           <Route path="/cadastro" element={<Cadastro />} />
-          <Route path="/reviews/:id" element={<Reviews />} /> {/* Nova rota para a página de Reviews */}
+          <Route path="/reviews/:id" element={<Reviews />} />
         </Routes>
       </Container>
 
@@ -61,5 +61,4 @@ function App() {
   );
 }
 
-import './sdk.jsx';
 export default App;

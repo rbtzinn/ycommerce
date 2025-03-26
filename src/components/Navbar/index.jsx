@@ -57,8 +57,6 @@ const Navbar = () => {
               <Link to="/login">Entrar</Link>
             </div>
           </div>
-
-          {/* Conteúdo Principal */}
           <div className="navbar-content container-fluid d-flex align-items-center justify-content-between">
             <HamburguerMenu className="hamburguer-button" toggleMenu={toggleMenu} />
 
@@ -87,8 +85,6 @@ const Navbar = () => {
           </div>
         </Container>
       </nav>
-
-      {/* Menu Lateral Mobile */}
       <div className={`side-menu ${menuOpen ? "open" : ""}`}>
         <button className="close-btn" onClick={toggleMenu}>&times;</button>
         <div className="menu-logo">
