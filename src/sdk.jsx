@@ -2,9 +2,10 @@ import axios from "axios"
 import jQuery from "jquery"
 
 class Sdk {
-    baseUrl = process.env.REACT_APP_API_URL
+    baseUrl = process.env.REACT_APP_API_URL || 'https://ycommerce.thlsn.site'
     constructor() {
-
+        console.log('baseUrl:')
+        console.log(this.baseUrl)
     }
     async http(method, url, data) {
         const config = {
@@ -54,7 +55,7 @@ class Sdk {
 
     async getBanners() {
         const banners = await this.http('GET', '/banners')
-    
+
         return banners
     }
 
