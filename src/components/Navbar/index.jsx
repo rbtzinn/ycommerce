@@ -9,15 +9,15 @@ import logo from '../../assets/images/ycommerce/favicon.png';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const { cartCount } = useCart();
-
-  const handleDropdownToggle = (isOpen) => {
-    setDropdownOpen(isOpen);
-  };
+  const [showCart, setShowCart] = useState(false);
+  const { cartItems, removeFromCart } = useCart();
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
+  };
+
+  const calculateTotal = () => {
+    return cartItems.reduce((total, item) => total + item.preco, 0).toFixed(2);
   };
 
   return (
@@ -44,7 +44,7 @@ const Navbar = () => {
               </a>
               <span className="pipe">|</span>
               <Dropdown align="end">
-                <Dropdown.Toggle variant="link" className="btn">
+                <Dropdown.Toggle variant="link" className="btn pt-br">
                   <i className="bi bi-globe"></i> Português - BR
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
@@ -83,10 +83,86 @@ const Navbar = () => {
             </form>
 
             <div className="nav-icons d-flex">
-              <Link to="/carrinho">
-                <i className="bi bi-cart3"></i>
-                {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
-              </Link>
+              <Dropdown 
+                align="end" 
+                show={showCart}
+                onMouseEnter={() => setShowCart(true)}
+                onMouseLeave={() => setShowCart(false)}
+                className="cart-dropdown"
+              >
+                <Dropdown.Toggle as="div" className="cart-dropdown-toggle p-0">
+                  <div className="position-relative">
+                    <i className="bi bi-cart3 fs-4 text-white"></i>
+                    {cartItems.length > 0 && (
+                      <span className="cart-badge position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        {cartItems.length}
+                        <span className="visually-hidden">itens no carrinho</span>
+                      </span>
+                    )}
+                  </div>
+                </Dropdown.Toggle>
+                <Dropdown.Menu className="cart-dropdown-menu p-0">
+                  <div className="cart-dropdown-container">
+                    <div className="cart-dropdown-header p-3 border-bottom">
+                      <h6 className="m-0">Meu Carrinho ({cartItems.length} {cartItems.length === 1 ? 'item' : 'itens'})</h6>
+                    </div>
+                    
+                    {cartItems.length > 0 ? (
+                      <>
+                        <div className="cart-items-list">
+                          {cartItems.map((item, index) => (
+                            <Dropdown.Item key={index} className="cart-item p-3 border-bottom">
+                              <div className="d-flex align-items-center">
+                                <img 
+                                  src={item.imagem} 
+                                  alt={item.nome} 
+                                  className="cart-item-image me-3 rounded" 
+                                  style={{ width: '60px', height: '60px', objectFit: 'cover' }}
+                                />
+                                <div className="cart-item-info flex-grow-1">
+                                  <span className="cart-item-name d-block text-truncate">{item.nome}</span>
+                                  <span className="cart-item-price d-block text-primary fw-bold">R$ {item.preco.toFixed(2)}</span>
+                                  <span className="cart-item-quantity text-muted small">Quantidade: 1</span>
+                                </div>
+                                <button 
+                                  className="btn btn-sm btn-outline-danger ms-2"
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    removeFromCart(index);
+                                  }}
+                                >
+                                  <i className="bi bi-trash"></i>
+                                </button>
+                              </div>
+                            </Dropdown.Item>
+                          ))}
+                        </div>
+                        <div className="cart-dropdown-footer p-3 border-top">
+                          <div className="d-flex justify-content-between mb-3">
+                            <span className="fw-bold">Total:</span>
+                            <span className="fw-bold text-primary">R$ {calculateTotal()}</span>
+                          </div>
+                          <Link 
+                            to="/carrinho" 
+                            className="btn btn-primary w-100 py-2 fw-bold"
+                          >
+                            Finalizar Compra
+                          </Link>
+                        </div>
+                      </>
+                    ) : (
+                      <div className="empty-cart p-4 text-center">
+                        <i className="bi bi-cart-x fs-1 text-muted mb-2"></i>
+                        <p className="mb-0">Seu carrinho está vazio</p>
+                        <Link to="/" className="btn btn-outline-primary mt-3">
+                          Continuar comprando
+                        </Link>
+                      </div>
+                    )}
+                  </div>
+                </Dropdown.Menu>
+              </Dropdown>
             </div>
           </div>
         </Container>
@@ -104,10 +180,7 @@ const Navbar = () => {
           <li><a href="#">Notificações</a></li>
           <li><a href="#">Ajuda</a></li>
           <li>
-            <Dropdown
-              onToggle={handleDropdownToggle}
-              className={dropdownOpen ? "show" : ""}
-            >
+            <Dropdown>
               <Dropdown.Toggle variant="link" className="text-white w-100 text-start ps-0">
                 <i className="bi bi-globe me-2"></i> Português - BR
               </Dropdown.Toggle>
