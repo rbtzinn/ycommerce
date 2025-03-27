@@ -9,7 +9,7 @@ export const NavbarSearch = () => (
         aria-label="Search"
       />
       <button className="btn btn-white rounded-end px-3" type="submit">
-        <i className="bi bi-search"></i>
+        <i className="bi bi-search text-white"></i>
       </button>
     </form>
   );
