@@ -8,7 +8,6 @@
   z-index: 1001;
 }
 
-/* Esconde o menu lateral por padrão */
 .side-menu {
   display: none;
   position: fixed;

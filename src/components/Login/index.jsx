@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import './login.css';
 import React from 'react';
-import logo from '../../assets/images/ycommerce/yCommerce---letreiro.png'
+import logo from '../../assets/images/ycommerce/YCommerce---letreiro.png'
 
 const Login = () => {
     const navigate = useNavigate();
