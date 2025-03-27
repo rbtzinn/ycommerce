@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 import './ProductReview.css';
 import produtos from "../../data/produtos";
+import { useNavigate } from "react-router-dom";
 
 const ProductReview = () => {
     const { id } = useParams();
@@ -10,6 +11,7 @@ const ProductReview = () => {
     const [quantity, setQuantity] = useState(1);
     const [isFavorited, setIsFavorited] = useState(false);
     const { addToCart } = useCart();
+    const navigate = useNavigate();
 
     if (!produto) {
         return <p className="text-center mt-5">Produto não encontrado!</p>;
@@ -21,7 +23,13 @@ const ProductReview = () => {
     };
 
     return (
-        <div className="container d-flex gap-4 p-4 bg-white rounded shadow-sm" style={{ maxWidth: '900px' }}>
+        <div className="container d-block d-lg-flex gap-4 p-4 bg-white rounded shadow-sm position-relative" style={{ maxWidth: '900px' }}>
+            <button
+                onClick={() => navigate('/')}
+                className="btn position-absolute top-0 end-0 mt-2 me-2"
+            >
+                <i className="bi bi-x-lg fs-4"></i>
+            </button>
             <div className="w-100 d-flex align-items-center justify-content-center">
                 <img src={produto.imagem} alt={produto.nome} className=" img-fluid rounded w-100 h-auto" style={{ objectFit: 'contain' }} />
             </div>

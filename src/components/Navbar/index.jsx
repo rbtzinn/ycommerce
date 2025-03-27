@@ -5,6 +5,7 @@ import HamburguerMenu from "../HamburguerMenu";
 import { Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
+import logo from '../../assets/images/ycommerce/favicon.png';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -60,8 +61,13 @@ const Navbar = () => {
           <div className="navbar-content container-fluid d-flex align-items-center justify-content-between">
             <HamburguerMenu className="hamburguer-button" toggleMenu={toggleMenu} />
 
-            <Link className="navbar-brand d-none d-lg-flex text-white" to="/">
-              <img src="logo.png" alt="LOGO" className="logo" />
+            <Link className="navbar-brand d-flex align-items-center text-white" to="/">
+              <img
+                src={logo}
+                alt="Logo"
+                className="logo"
+                style={{ width: '40px', height: '40px' }}
+              />
             </Link>
 
             <form className="search-bar d-flex">

@@ -1,3 +1,9 @@
 .container-img {
     width: 500px !important;
 }
+
+.btn-close-custom:hover {
+    transform: rotate(90deg);
+    transition: transform 0.3s ease;
+    opacity: 0.75;
+}
