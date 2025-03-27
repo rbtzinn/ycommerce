@@ -11,10 +11,11 @@ const Destaques = () => {
     const handleVerDetalhes = (id) => {
         navigate(`/reviews/${id}`);
     };
-
+    
     return (
+        <>
+        <h4>Destaques</h4>
         <div className="container-dest bg-light rounded p-1 p-lg-3">
-            <h4 className="dest">Destaques</h4>
             <div className="row g-1">
                 {produtos.map((produto) => (
                     <div key={produto.id} className="col-6 col-sm-4 col-md-3 col-lg-2 mb-5 product">
@@ -22,7 +23,7 @@ const Destaques = () => {
                             className="card w-100 product-card h-100"
                             onClick={() => handleVerDetalhes(produto.id)}
                             style={{ cursor: "pointer" }}
-                        >
+                            >
                             <div className="image-container position-relative" style={{ paddingTop: '100%' }}>
                                 <img
                                     src={produto.imagem}
@@ -34,7 +35,7 @@ const Destaques = () => {
                                         objectFit: 'contain',
                                         objectPosition: 'center'
                                     }}
-                                />
+                                    />
                             </div>
                             <div className="card-body d-flex flex-column">
                                 <div className="flex-grow-1">
@@ -56,7 +57,7 @@ const Destaques = () => {
                                             e.stopPropagation();
                                             addToCart(produto);
                                         }}
-                                    >
+                                        >
                                         <i className="bi bi-cart"></i>
                                         <span className="d-none d-md-inline ms-1">Adicionar</span>
                                     </button>
@@ -67,6 +68,7 @@ const Destaques = () => {
                 ))}
             </div>
         </div>
+    </>
     );
 };
 
