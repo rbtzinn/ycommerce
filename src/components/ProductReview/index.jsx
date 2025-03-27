@@ -41,15 +41,15 @@ const ProductReview = () => {
                 </div>
                 <div className="d-flex align-items-center gap-2 mb-3">
                     <p className="mb-0">Quantidade:</p>
-                    <button className="btn btn-outline-primary btn-sm" onClick={handleDecrease}>-</button>
+                    <button className="btn btn-outline-primary btn-sm" style={{ borderColor: '#6c757d' }} onClick={handleDecrease}>-</button>
                     <span className="fw-bold">{quantity}</span>
-                    <button className="btn btn-outline-primary btn-sm" onClick={handleIncrease}>+</button>
+                    <button className="btn btn-outline-primary btn-sm" style={{ borderColor: '#6c757d' }} onClick={handleIncrease}>+</button>
                 </div>
                 <div className="d-flex gap-2 mb-3">
-                    <button className="btn btn-primary flex-grow-1" onClick={() => addToCart({ ...produto, quantity })}>
+                    <button className="btn btn-primary flex-grow-1" style={{ backgroundColor: '#6c757d', borderColor: '#6c757d' }} onClick={() => addToCart({ ...produto, quantity })}>
                         🛒 Adicionar ao Carrinho
                     </button>
-                    <button className="btn btn-success flex-grow-1">🛍️ Comprar Agora</button>
+                    <button className="btn btn-success flex-grow-1" style={{ backgroundColor: '#0d6efd', borderColor: '#0d6efd' }}>🛍️ Comprar Agora</button>
                 </div>
                 <button className={`btn btn-link p-0 text-decoration-none ${isFavorited ? "text-danger" : "text-dark"}`} onClick={() => setIsFavorited(!isFavorited)}>
                     ❤️ {isFavorited ? "Favoritado" : "Favoritar"}

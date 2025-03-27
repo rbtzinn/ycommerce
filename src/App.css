@@ -14,7 +14,7 @@
 
   .with-navbar {
     padding-top: 100px;
-  }  
+  }
 
   .ads-wrapper {
     flex: 1;
@@ -45,5 +45,9 @@
 
     .ads-wrapper img {
       max-height: 80px;
+    }
+
+    .with-navbar {
+      padding-top: 150px;
     }
   }

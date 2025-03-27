@@ -12,6 +12,7 @@ import Categorias from "./components/Categorias";
 import Reviews from "./components/Reviews";
 import { CartProvider } from "./context/CartContext";
 import CentralVendedor from "./components/CentralVendedor/index.jsx";
+import LojasPrincipais from "./components/LojasPrincipais/index.jsx";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -21,11 +22,12 @@ import './sdk.jsx';
 function AppContent() {
   const location = useLocation();
   const isCentralVendedor = location.pathname === "/central-vendedor";
+  const hasNavbar = !['/login', '/cadastro', '/central-vendedor'].includes(location.pathname);
 
   return (
-    <div className={!isCentralVendedor ? "with-navbar" : ""}>
+    <div className={hasNavbar ? "with-navbar" : ""}>
       {/* Exibe a Navbar apenas onde necessário */}
-      {!['/login', '/cadastro', '/central-vendedor'].includes(location.pathname) && <Navbar />}
+      {hasNavbar && <Navbar />}
 
       <Routes>
         <Route path="/" element={
@@ -40,6 +42,7 @@ function AppContent() {
                 </div>
               </div>
               <Categorias />
+              <LojasPrincipais/>
               <Destaques />
             </Container>
           </>

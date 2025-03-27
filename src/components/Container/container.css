@@ -1,12 +1,12 @@
 .my-custom-container {
-  max-width: 1400px;
+  max-width: 1800px;
   margin: 0 auto;
-  padding: 0 15px;
+  padding: 0;
 }
 
 @media (max-width: 576px) {
   .my-custom-container {
     margin: 0 auto;
-    padding: 0 3px;
+    padding: 0;
   }
 }

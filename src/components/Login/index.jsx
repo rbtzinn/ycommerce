@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import './login.css';
 import React from 'react';
+import logo from '../../assets/images/ycommerce/yCommerce---letreiro.png'
 
 const Login = () => {
     const navigate = useNavigate();
@@ -17,7 +18,7 @@ const Login = () => {
             <div className="row g-0 shadow-lg rounded-3 overflow-hidden mt-4 mb-4" style={{ maxWidth: '1000px' }}>
                 <div className="col-md-6 bg-primary text-white p-5 d-flex flex-column justify-content-center">
                     <h2 className="fw-bold mb-3">yCommerce Site</h2>
-                    <img src="#" alt="LOGO" />
+                    <img src={logo} alt="LOGO" />
                 </div>
 
                 <div className="col-md-6 bg-white p-5 position-relative">

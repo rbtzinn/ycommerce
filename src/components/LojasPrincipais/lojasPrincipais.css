@@ -1,0 +1,39 @@
+.loja {
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    width: 8em;
+    height: 8em;
+    align-items: center;
+    justify-content: center;
+}
+
+.loja .img {
+    width: 5em;
+    height: 5em;
+    box-shadow: 10px 10px 5px -5px rgba(0, 0, 0, 0.31);
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    transition: transform 0.1s;
+}
+
+.loja .img:hover {
+    transform: scale(1.05);
+}
+
+.loja h4 {
+    font-size: 14pt;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .lojas-container {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .loja {
+        margin: 0.5em;
+    }
+}

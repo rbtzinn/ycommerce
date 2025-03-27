@@ -1,15 +1,16 @@
 import { Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import React from "react";
+import logomob from '../../assets/images/ycommerce/favicon.png'
 
 export const NavbarSideMenu = ({ menuOpen, toggleMenu }) => (
   <>
     <div className={`side-menu ${menuOpen ? "open" : ""}`}>
       <button className="btn btn-link text-white fs-4 position-absolute top-0 end-0 p-2" onClick={toggleMenu}>&times;</button>
       <div className="text-center mb-4">
-        <img src="logo.png" alt="LOGO" className="img-fluid" style={{ width: '120px' }} />
+        <img src={logomob} alt="LOGO" className="img-fluid mt-2" style={{ width: '40px' }} />
       </div>
-      <ul className="list-unstyled">
+      <ul className="list-unstyled ms-3">
         <li className="py-1"><a href="#" className="text-white text-decoration-none d-block py-1">Central do Vendedor</a></li>
         <li className="py-1"><a href="#" className="text-white text-decoration-none d-block py-1">Vender no site</a></li>
         <li className="py-1"><a href="#" className="text-white text-decoration-none d-block py-1">Baixe o App</a></li>

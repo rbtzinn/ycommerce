@@ -1,5 +1,5 @@
 .main-navbar {
-  background: #003483;
+  background: #0D6EFD;
   position: fixed;
   top: 0;
   left: 0;
@@ -35,9 +35,6 @@
 }
 
 @media (max-width: 992px) {
-  body {
-    padding-top: 70px;
-  }
   .side-menu {
     display: block;
   }
