@@ -55,7 +55,7 @@ export default function CentralVendedor() {
               </a>
             </li>
             <li className="nav-item">
-              <a href="#" className="nav-link text-success">
+              <a href="#" className="nav-link text-white">
                 <FaPlus className="me-2" />
                 Novo Produto
               </a>
