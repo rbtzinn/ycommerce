@@ -11,6 +11,7 @@ import Footer from "./components/Footer/index.jsx";
 import Categorias from "./components/Categorias";
 import Reviews from "./components/Reviews";
 import { CartProvider } from "./context/CartContext";
+import CentralVendedor from "./components/CentralVendedor/index.jsx";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -19,15 +20,17 @@ import './sdk.jsx';
 
 function AppContent() {
   const location = useLocation();
-  
-  return (
-    <>
-      {!['/login', '/cadastro'].includes(location.pathname) && <Navbar />}
+  const isCentralVendedor = location.pathname === "/central-vendedor";
 
-      <Container>
-        <Routes>
-          <Route path="/" element={
-            <>
+  return (
+    <div className={!isCentralVendedor ? "with-navbar" : ""}>
+      {/* Exibe a Navbar apenas onde necessário */}
+      {!['/login', '/cadastro', '/central-vendedor'].includes(location.pathname) && <Navbar />}
+
+      <Routes>
+        <Route path="/" element={
+          <>
+            <Container>
               <div className="grid-container">
                 <div className="carousel-wrapper">
                   <Carousel />
@@ -38,16 +41,18 @@ function AppContent() {
               </div>
               <Categorias />
               <Destaques />
-            </>
-          } />
-          <Route path="/login" element={<Login />} />
-          <Route path="/cadastro" element={<Cadastro />} />
-          <Route path="/reviews/:id" element={<Reviews />} />
-        </Routes>
-      </Container>
+            </Container>
+          </>
+        } />
+        <Route path="/login" element={<Login />} />
+        <Route path="/cadastro" element={<Cadastro />} />
+        <Route path="/reviews/:id" element={<Reviews />} />
+        <Route path="/central-vendedor" element={<CentralVendedor />} />
+      </Routes>
 
-      <Footer />
-    </>
+      {/* Exibe o Footer onde necessário */}
+      {!isCentralVendedor && <Footer />}
+    </div>
   );
 }
 
