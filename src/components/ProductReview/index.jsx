@@ -10,7 +10,7 @@ const ProductReview = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const { addToCart } = useCart();
-    
+
     const produto = produtos.find((p) => p.id === Number(id));
     const [quantity, setQuantity] = useState(1);
     const [selectedImage, setSelectedImage] = useState(produto?.imagens?.[0] || "");
@@ -19,16 +19,19 @@ const ProductReview = () => {
     const [frete, setFrete] = useState(null);
     const [isCalculating, setIsCalculating] = useState(false);
     const [freteError, setFreteError] = useState("");
+    const [isAddingToCart, setIsAddingToCart] = useState(false); // Estado para bloquear o botão enquanto adiciona
 
     if (!produto) {
         return <div className="product-not-found">Produto não encontrado!</div>;
     }
 
-    const handleIncrease = () => setQuantity((prev) => prev + 1);
-    const handleDecrease = () => setQuantity((prev) => (prev > 1 ? prev - 1 : prev));
+    const handleIncrease = () => setQuantity((prev) => Math.min(prev + 1, produto.estoque));
+    const handleDecrease = () => setQuantity((prev) => Math.max(prev - 1, 1));
 
     const handleAddToCart = () => {
+        setIsAddingToCart(true);
         addToCart({ ...produto, quantity });
+        setIsAddingToCart(false);
     };
 
     const calcularFrete = async () => {
@@ -51,7 +54,7 @@ const ProductReview = () => {
 
             setFrete({ valor: valorFrete, prazo, tipo });
         } catch {
-            setFreteError("Erro ao calcular frete");
+            setFreteError("Erro ao calcular frete. Tente novamente.");
         } finally {
             setIsCalculating(false);
         }
@@ -133,7 +136,11 @@ const ProductReview = () => {
                                 placeholder="00000-000"
                                 className="cep-input"
                             />
-                            <button onClick={calcularFrete} disabled={!cep || cep.length < 9} className="calculate-button btn btn-primary">
+                            <button
+                                onClick={calcularFrete}
+                                disabled={!cep || cep.length < 9}
+                                className="calculate-button btn btn-primary"
+                            >
                                 {isCalculating ? "Calculando..." : "Calcular"}
                             </button>
                         </div>
@@ -150,8 +157,12 @@ const ProductReview = () => {
 
                     {/* Botões de ação */}
                     <div className="action-buttons">
-                        <button className="btn btn-success" onClick={handleAddToCart}>
-                            <FaShoppingCart /> Adicionar ao Carrinho
+                        <button
+                            className="btn btn-success"
+                            onClick={handleAddToCart}
+                            disabled={isAddingToCart}
+                        >
+                            <FaShoppingCart /> {isAddingToCart ? "Adicionando..." : "Adicionar ao Carrinho"}
                         </button>
                         <button className="btn btn-primary">
                             <FaBolt /> Comprar Agora
