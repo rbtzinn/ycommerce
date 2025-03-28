@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Card, ListGroup, Form, Button } from "react-bootstrap";
-import "./minhaConta.css"; 
+import "./myAcount.css"; 
 
 const MinhaConta = () => {
   const [activeSection, setActiveSection] = useState("perfil");
