@@ -19,19 +19,34 @@ const ProductReview = () => {
     const [frete, setFrete] = useState(null);
     const [isCalculating, setIsCalculating] = useState(false);
     const [freteError, setFreteError] = useState("");
-    const [isAddingToCart, setIsAddingToCart] = useState(false); // Estado para bloquear o botão enquanto adiciona
+    const [isAddingToCart, setIsAddingToCart] = useState(false); 
 
     if (!produto) {
         return <div className="product-not-found">Produto não encontrado!</div>;
     }
 
-    const handleIncrease = () => setQuantity((prev) => Math.min(prev + 1, produto.estoque));
-    const handleDecrease = () => setQuantity((prev) => Math.max(prev - 1, 1));
-
+    const handleIncrease = () => {
+        setQuantity(prevQuantity => {
+            if (produto.estoque && prevQuantity >= produto.estoque) {
+                return prevQuantity;
+            }
+            return prevQuantity + 1;
+        });
+    };
+    
+    const handleDecrease = () => {
+        setQuantity(prevQuantity => {
+            if (prevQuantity <= 1) {
+                return 1;
+            }
+            return prevQuantity - 1;
+        });
+    };
+    
     const handleAddToCart = () => {
         setIsAddingToCart(true);
         addToCart({ ...produto, quantity });
-        setIsAddingToCart(false);
+        setTimeout(() => setIsAddingToCart(false), 500); // Feedback visual
     };
 
     const calcularFrete = async () => {
@@ -44,10 +59,7 @@ const ProductReview = () => {
         setFreteError("");
 
         try {
-            // Simulação de API de frete (substitua por uma chamada real)
             await new Promise((resolve) => setTimeout(resolve, 1500));
-
-            // Valores simulados
             const valorFrete = (Math.random() * 20 + 5).toFixed(2);
             const prazo = Math.floor(Math.random() * 10) + 1;
             const tipo = ["Expresso", "Econômico", "Padrão"][Math.floor(Math.random() * 3)];
@@ -67,7 +79,6 @@ const ProductReview = () => {
             </button>
 
             <div className="product-detail-card">
-                {/* Galeria de imagens */}
                 <div className="product-gallery">
                     <div className="thumbnail-container">
                         {produto.imagens?.map((img, index) => (
@@ -85,7 +96,6 @@ const ProductReview = () => {
                     </div>
                 </div>
 
-                {/* Informações do produto */}
                 <div className="product-info">
                     <h1>{produto.nome}</h1>
                     <div className="rating">
@@ -106,7 +116,7 @@ const ProductReview = () => {
                         {produto.parcelamento && (
                             <div className="installments">
                                 ou {produto.parcelamento.vezes}x de R$ {(
-                                    produto.preco / (produto.parcelamento?.vezes ?? 1)
+                                    produto.preco / produto.parcelamento.vezes
                                 ).toFixed(2)} {produto.parcelamento.semJuros ? "sem juros" : ""}
                             </div>
                         )}
@@ -115,17 +125,32 @@ const ProductReview = () => {
                     <h3>Descrição</h3>
                     <p>{produto.descricao}</p>
 
-                    {/* Seção de quantidade */}
                     <div className="quantity-selector">
                         <label>Quantidade:</label>
                         <div className="quantity-control">
-                            <button onClick={handleDecrease}>-</button>
+                            <button 
+                                onClick={handleDecrease}
+                                disabled={quantity <= 1}
+                            >
+                                -
+                            </button>
                             <span>{quantity}</span>
-                            <button onClick={handleIncrease}>+</button>
+                            <button 
+                                onClick={handleIncrease}
+                                disabled={produto.estoque && quantity >= produto.estoque}
+                            >
+                                +
+                            </button>
                         </div>
+                        {produto.estoque && (
+                            <div className="stock-info">
+                                {produto.estoque - quantity > 0 
+                                    ? `${produto.estoque - quantity} disponíveis` 
+                                    : "Últimas unidades!"}
+                            </div>
+                        )}
                     </div>
 
-                    {/* Cálculo de Frete */}
                     <div className="shipping-section">
                         <h4>Calcular Frete</h4>
                         <div className="shipping-controls">
@@ -138,7 +163,7 @@ const ProductReview = () => {
                             />
                             <button
                                 onClick={calcularFrete}
-                                disabled={!cep || cep.length < 9}
+                                disabled={!cep || cep.length < 9 || isCalculating}
                                 className="calculate-button btn btn-primary"
                             >
                                 {isCalculating ? "Calculando..." : "Calcular"}
@@ -155,7 +180,6 @@ const ProductReview = () => {
                         )}
                     </div>
 
-                    {/* Botões de ação */}
                     <div className="action-buttons">
                         <button
                             className="btn btn-success"
@@ -169,7 +193,6 @@ const ProductReview = () => {
                         </button>
                     </div>
 
-                    {/* Favorito */}
                     <button className={`favorite-button ${isFavorited ? "favorited" : ""}`} onClick={() => setIsFavorited(!isFavorited)}>
                         {isFavorited ? <FaHeart /> : <FaRegHeart />}
                         {isFavorited ? "Remover dos favoritos" : "Adicionar aos favoritos"}

@@ -198,31 +198,42 @@
 .quantity-control {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 10px;
 }
 
 .quantity-control button {
-    width: 36px;
-    height: 36px;
+    width: 30px;
+    height: 30px;
     border: 1px solid #ddd;
-    background: #f9f9f9;
-    font-size: 1.2rem;
+    background: #f8f9fa;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
-    transition: all 0.2s;
+}
+
+.quantity-control button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.quantity-control span {
+    min-width: 30px;
+    text-align: center;
+}
+
+.stock-info {
+    font-size: 0.8rem;
+    color: #28a745;
+    margin-top: 5px;
 }
 
 .quantity-control button:hover {
     background: #eee;
 }
 
-.quantity-control span {
-    width: 50px;
-    text-align: center;
-    font-weight: 600;
-}
 
 /* Botões de ação */
 .action-buttons {
