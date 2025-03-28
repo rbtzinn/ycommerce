@@ -5,4 +5,7 @@ export default defineConfig({
   plugins: [
     nodePolyfills(),
   ],
+  optimizeDeps: {
+    include: ['react-bootstrap']
+  }
 })

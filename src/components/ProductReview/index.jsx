@@ -1,10 +1,10 @@
 import React, { useState } from "react";
+import "./pReview.css"
 import { useParams, useNavigate } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 import produtos from "../../data/produtos";
 import { FaHeart, FaRegHeart, FaShoppingCart, FaBolt, FaStar, FaChevronLeft } from "react-icons/fa";
 import { IMaskInput } from "react-imask";
-import "./productReview.css";
 
 const ProductReview = () => {
     const { id } = useParams();
