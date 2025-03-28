@@ -13,8 +13,8 @@ import Reviews from "./components/Reviews";
 import { CartProvider } from "./context/CartContext";
 import CentralVendedor from "./pages/CentralVendedor"
 import LojasPrincipais from "./components/LojasPrincipais/index.jsx";
-import HelpCenter from "./pages/HelpCenter/index.jsx";
-import MinhaConta from "./pages/MinhaConta/index.jsx";
+import HelpCenter from "./pages/HelpCenter";
+import MinhaConta from "./pages/MinhaConta";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap-icons/font/bootstrap-icons.css';
