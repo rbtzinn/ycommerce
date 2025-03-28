@@ -2,3 +2,9 @@
     object-fit: cover;
     max-height: 220px;
   }
+
+  @media (max-width: 992px) {
+    .carousel-inner img {
+      max-height: 150px;
+    }
+  }

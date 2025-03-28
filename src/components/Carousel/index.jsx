@@ -1,21 +1,11 @@
-import { useEffect, useState } from "react";
-import React from "react";
+import React, { useState } from "react";
 import "./carousel.css";
-import Sdk from "../../sdk";
+import slide1 from "../../assets/images/carousel/slide1.jpg";
+import slide2 from "../../assets/images/carousel/slide2.jpg";
+import slide3 from "../../assets/images/carousel/slide3.jpg";
 
 const Carousel = () => {
-  const api = new Sdk();
-  const [banners, setBanners] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const bannersData = await api.getBanners();
-      console.log('banners:');
-      setBanners(bannersData);
-      console.log(bannersData);
-    };
-    fetchData();
-  }, []);
+  const slides = [slide1, slide2, slide3];
 
   return (
     <div className="carousel-container">
@@ -25,15 +15,15 @@ const Carousel = () => {
         data-bs-ride="carousel"
       >
         <div className="carousel-inner" id="carousel-items">
-          {banners.map((banner, index) => (
+          {slides.map((slide, index) => (
             <div
               className={`carousel-item ${index === 0 ? "active" : ""}`}
-              key={banner.image}
+              key={index}
             >
               <img
-                src={banner.image}
+                src={slide}
                 className="d-block w-100"
-                alt={banner.alt}
+                alt={`Slide ${index + 1}`}
               />
             </div>
           ))}
