@@ -1,11 +1,48 @@
 .main-navbar {
-  background: #0D6EFD;
   position: fixed;
   top: 0;
-  left: 0;
-  right: 0;
   width: 100%;
+  background: rgba(13, 110, 253, 0.85); /* Azul da navbar com transparência */
+  backdrop-filter: blur(5px);
   z-index: 1001;
+
+}
+
+/* Adicione ao seu arquivo CSS */
+.cep-container {
+  height: 30px; /* Altura fixa para o container */
+}
+
+.cep-container .form-control {
+  background-color: transparent;
+  color: white;
+  border-color: rgba(255, 255, 255, 0.3);
+  height: 26px;
+  padding: 0.25rem 0.5rem;
+  line-height: 1.2;
+}
+
+.cep-container .form-control::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.75rem;
+}
+
+.cep-container .btn-outline-light {
+  color: white;
+  border-color: rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.input-group.input-group-sm {
+  align-items: stretch;
+}
+
+.cep-container .btn-outline-light i {
+  font-size: 0.8rem;
+  line-height: 1;
 }
 
 .side-menu {

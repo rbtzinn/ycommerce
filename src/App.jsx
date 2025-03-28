@@ -28,7 +28,6 @@ function AppContent() {
 
   return (
     <div className={hasNavbar ? "with-navbar" : ""}>
-      {/* Exibe a Navbar apenas onde necessário */}
       {hasNavbar && <Navbar />}
 
       <Routes>
