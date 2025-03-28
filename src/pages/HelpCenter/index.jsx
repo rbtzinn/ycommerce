@@ -17,7 +17,7 @@ import {
     FormControl,
     Button
 } from "react-bootstrap";
-import "./HelpCenter.css";
+import "./helpCenter.css";
 import logo from '../../assets/images/ycommerce/YCommerce---letreiro.png'
 
 const HelpCenter = () => {

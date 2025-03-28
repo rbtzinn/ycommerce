@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Card, ListGroup, Form, Button } from "react-bootstrap";
-import "./MinhaConta.css"; // Arquivo CSS para estilos personalizados
+import "./minhaConta.css"; 
 
 const MinhaConta = () => {
   const [activeSection, setActiveSection] = useState("perfil");
