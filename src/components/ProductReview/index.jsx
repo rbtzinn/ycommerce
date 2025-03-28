@@ -1,59 +1,169 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
-import './ProductReview.css';
 import produtos from "../../data/produtos";
-import { useNavigate } from "react-router-dom";
+import { FaHeart, FaRegHeart, FaShoppingCart, FaBolt, FaStar, FaChevronLeft } from "react-icons/fa";
+import { IMaskInput } from "react-imask";
+import "./productReview.css";
 
 const ProductReview = () => {
     const { id } = useParams();
-    const produto = produtos.find(p => p.id === Number(id));
-    const [quantity, setQuantity] = useState(1);
-    const [isFavorited, setIsFavorited] = useState(false);
-    const { addToCart } = useCart();
     const navigate = useNavigate();
+    const { addToCart } = useCart();
+    
+    const produto = produtos.find((p) => p.id === Number(id));
+    const [quantity, setQuantity] = useState(1);
+    const [selectedImage, setSelectedImage] = useState(produto?.imagens?.[0] || "");
+    const [isFavorited, setIsFavorited] = useState(false);
+    const [cep, setCep] = useState("");
+    const [frete, setFrete] = useState(null);
+    const [isCalculating, setIsCalculating] = useState(false);
+    const [freteError, setFreteError] = useState("");
 
     if (!produto) {
-        return <p className="text-center mt-5">Produto não encontrado!</p>;
+        return <div className="product-not-found">Produto não encontrado!</div>;
     }
 
-    const handleIncrease = () => setQuantity(quantity + 1);
-    const handleDecrease = () => {
-        if (quantity > 1) setQuantity(quantity - 1);
+    const handleIncrease = () => setQuantity((prev) => prev + 1);
+    const handleDecrease = () => setQuantity((prev) => (prev > 1 ? prev - 1 : prev));
+
+    const handleAddToCart = () => {
+        addToCart({ ...produto, quantity });
+    };
+
+    const calcularFrete = async () => {
+        if (cep.length !== 9) {
+            setFreteError("CEP inválido");
+            return;
+        }
+
+        setIsCalculating(true);
+        setFreteError("");
+
+        try {
+            // Simulação de API de frete (substitua por uma chamada real)
+            await new Promise((resolve) => setTimeout(resolve, 1500));
+
+            // Valores simulados
+            const valorFrete = (Math.random() * 20 + 5).toFixed(2);
+            const prazo = Math.floor(Math.random() * 10) + 1;
+            const tipo = ["Expresso", "Econômico", "Padrão"][Math.floor(Math.random() * 3)];
+
+            setFrete({ valor: valorFrete, prazo, tipo });
+        } catch {
+            setFreteError("Erro ao calcular frete");
+        } finally {
+            setIsCalculating(false);
+        }
     };
 
     return (
-        <div className="container d-block d-lg-flex gap-4 p-4 bg-white rounded shadow-sm position-relative" style={{ maxWidth: '900px' }}>
-            <button
-                onClick={() => navigate('/')}
-                className="btn position-absolute top-0 end-0 mt-2 me-2"
-            >
-                <i className="bi bi-x-lg fs-4"></i>
+        <div className="product-review-container">
+            <button onClick={() => navigate(-1)} className="back-button">
+                <FaChevronLeft /> Voltar
             </button>
-            <div className="w-100 d-flex align-items-center justify-content-center">
-                <img src={produto.imagem} alt={produto.nome} className=" img-fluid rounded w-100 h-auto" style={{ objectFit: 'contain' }} />
-            </div>
-            <div className="flex-grow-1">
-                <h2 className="h5 fw-bold">{produto.nome}</h2>
-                <p className="text-muted mb-2">{produto.descricao}</p>
-                <div className="d-flex align-items-center gap-2 mb-2">
-                    <span className="h5 fw-bold text-danger">R$ {produto.preco.toFixed(2)}</span>
+
+            <div className="product-detail-card">
+                {/* Galeria de imagens */}
+                <div className="product-gallery">
+                    <div className="thumbnail-container">
+                        {produto.imagens?.map((img, index) => (
+                            <div
+                                key={index}
+                                className={`thumbnail ${selectedImage === img ? "active" : ""}`}
+                                onClick={() => setSelectedImage(img)}
+                            >
+                                <img src={img} alt={`Thumb ${index}`} />
+                            </div>
+                        ))}
+                    </div>
+                    <div className="main-image">
+                        <img src={selectedImage} alt={produto.nome} />
+                    </div>
                 </div>
-                <div className="d-flex align-items-center gap-2 mb-3">
-                    <p className="mb-0">Quantidade:</p>
-                    <button className="btn btn-outline-primary btn-sm" style={{ borderColor: '#6c757d' }} onClick={handleDecrease}>-</button>
-                    <span className="fw-bold">{quantity}</span>
-                    <button className="btn btn-outline-primary btn-sm" style={{ borderColor: '#6c757d' }} onClick={handleIncrease}>+</button>
-                </div>
-                <div className="d-flex gap-2 mb-3">
-                    <button className="btn btn-primary flex-grow-1" style={{ backgroundColor: '#6c757d', borderColor: '#6c757d' }} onClick={() => addToCart({ ...produto, quantity })}>
-                        🛒 Adicionar ao Carrinho
+
+                {/* Informações do produto */}
+                <div className="product-info">
+                    <h1>{produto.nome}</h1>
+                    <div className="rating">
+                        {[...Array(5)].map((_, i) => (
+                            <FaStar key={i} className={i < produto.rating ? "filled" : ""} />
+                        ))}
+                        <span>({produto.reviews} avaliações)</span>
+                    </div>
+
+                    {produto.tag && <span className="product-tag">{produto.tag}</span>}
+
+                    <div className="price-container">
+                        <div className="current-price">
+                            R$ {produto.preco.toFixed(2)}
+                            {produto.desconto && <span className="discount-badge">-{produto.desconto}%</span>}
+                        </div>
+                        {produto.precoAntigo && <div className="old-price">R$ {produto.precoAntigo.toFixed(2)}</div>}
+                        {produto.parcelamento && (
+                            <div className="installments">
+                                ou {produto.parcelamento.vezes}x de R$ {(
+                                    produto.preco / (produto.parcelamento?.vezes ?? 1)
+                                ).toFixed(2)} {produto.parcelamento.semJuros ? "sem juros" : ""}
+                            </div>
+                        )}
+                    </div>
+
+                    <h3>Descrição</h3>
+                    <p>{produto.descricao}</p>
+
+                    {/* Seção de quantidade */}
+                    <div className="quantity-selector">
+                        <label>Quantidade:</label>
+                        <div className="quantity-control">
+                            <button onClick={handleDecrease}>-</button>
+                            <span>{quantity}</span>
+                            <button onClick={handleIncrease}>+</button>
+                        </div>
+                    </div>
+
+                    {/* Cálculo de Frete */}
+                    <div className="shipping-section">
+                        <h4>Calcular Frete</h4>
+                        <div className="shipping-controls">
+                            <IMaskInput
+                                mask="00000-000"
+                                value={cep}
+                                onAccept={(value) => setCep(value)}
+                                placeholder="00000-000"
+                                className="cep-input"
+                            />
+                            <button onClick={calcularFrete} disabled={!cep || cep.length < 9} className="calculate-button btn btn-primary">
+                                {isCalculating ? "Calculando..." : "Calcular"}
+                            </button>
+                        </div>
+
+                        {freteError && <div className="shipping-error">{freteError}</div>}
+
+                        {frete && (
+                            <div className="shipping-result">
+                                <p>Frete {frete.tipo}: R$ {frete.valor}</p>
+                                <p>Prazo de entrega: {frete.prazo} dia{frete.prazo > 1 ? "s" : ""}</p>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Botões de ação */}
+                    <div className="action-buttons">
+                        <button className="btn btn-success" onClick={handleAddToCart}>
+                            <FaShoppingCart /> Adicionar ao Carrinho
+                        </button>
+                        <button className="btn btn-primary">
+                            <FaBolt /> Comprar Agora
+                        </button>
+                    </div>
+
+                    {/* Favorito */}
+                    <button className={`favorite-button ${isFavorited ? "favorited" : ""}`} onClick={() => setIsFavorited(!isFavorited)}>
+                        {isFavorited ? <FaHeart /> : <FaRegHeart />}
+                        {isFavorited ? "Remover dos favoritos" : "Adicionar aos favoritos"}
                     </button>
-                    <button className="btn btn-success flex-grow-1" style={{ backgroundColor: '#0d6efd', borderColor: '#0d6efd' }}>🛍️ Comprar Agora</button>
                 </div>
-                <button className={`btn btn-link p-0 text-decoration-none ${isFavorited ? "text-danger" : "text-dark"}`} onClick={() => setIsFavorited(!isFavorited)}>
-                    ❤️ {isFavorited ? "Favoritado" : "Favoritar"}
-                </button>
             </div>
         </div>
     );
