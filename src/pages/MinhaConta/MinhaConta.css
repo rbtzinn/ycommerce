@@ -1,0 +1,104 @@
+/* Estilos gerais */
+.sidebar-card {
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: none;
+  }
+  
+  .content-card {
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: none;
+    min-height: 500px;
+  }
+  
+  .sidebar-title {
+    color: #2c3e50;
+    font-weight: 600;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 15px;
+  }
+  
+  .section-title {
+    color: #2c3e50;
+    font-weight: 600;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  /* Menu lateral */
+  .sidebar-menu .menu-item {
+    border: none;
+    padding: 12px 15px;
+    color: #34495e;
+    transition: all 0.3s ease;
+  }
+  
+  .sidebar-menu .menu-item:hover {
+    color: #3498db;
+    background-color: #f8f9fa;
+    transform: translateX(5px);
+  }
+  
+  .sidebar-menu .menu-item.active {
+    color: #3498db;
+    background-color: #f8f9fa;
+    font-weight: 500;
+  }
+  
+  .sidebar-menu .menu-item i {
+    font-size: 1.1rem;
+  }
+  
+  /* Formulários e conteúdo */
+  .form-input {
+    border-radius: 8px;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    transition: all 0.3s ease;
+  }
+  
+  .form-input:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25);
+  }
+  
+  .save-btn, .add-btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  
+  .save-btn:hover, .add-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(52, 152, 219, 0.2);
+  }
+  
+  .remove-btn {
+    border-radius: 6px;
+    transition: all 0.3s ease;
+  }
+  
+  .remove-btn:hover {
+    background-color: #e74c3c;
+    color: white;
+  }
+  
+  .card-item {
+    border-radius: 8px;
+    border: 1px solid #eee;
+    transition: all 0.3s ease;
+  }
+  
+  .card-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Ícones */
+  .bi {
+    vertical-align: middle;
+  }

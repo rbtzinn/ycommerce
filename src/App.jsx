@@ -14,6 +14,7 @@ import { CartProvider } from "./context/CartContext";
 import CentralVendedor from "./pages/CentralVendedor"
 import LojasPrincipais from "./components/LojasPrincipais/index.jsx";
 import HelpCenter from "./pages/HelpCenter/index.jsx";
+import MinhaConta from "./pages/MinhaConta/index.jsx";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -53,6 +54,7 @@ function AppContent() {
         <Route path="/reviews/:id" element={<Reviews />} />
         <Route path="/central-vendedor" element={<CentralVendedor />} />
         <Route path="/ajuda" element={<HelpCenter />} />
+        <Route path="/minha-conta" element={<MinhaConta />} />
       </Routes>
 
       {/* Exibe o Footer onde necessário */}

@@ -1,5 +1,6 @@
 import { Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { FaInstagram, FaTiktok, FaXTwitter } from "react-icons/fa6"; // Atualizando ícones corretamente
 import React from "react";
 
 export const NavbarTopbar = () => (
@@ -13,8 +14,22 @@ export const NavbarTopbar = () => (
       <span className="text-white mx-1">|</span>
       <a href="#" className="text-white text-decoration-none d-inline-flex align-items-center px-2">Baixe o App</a>
       <span className="text-white mx-1">|</span>
-      <a href="#" className="text-white text-decoration-none d-inline-flex align-items-center px-2">Siga-nos</a>
+      
+      {/* Seção "Siga-nos" com ícones de redes sociais */}
+      <span className="text-white d-inline-flex align-items-center px-2">
+        Siga-nos:
+        <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="text-white ms-2">
+          <FaInstagram />
+        </a>
+        <a href="https://www.tiktok.com" target="_blank" rel="noopener noreferrer" className="text-white ms-2">
+          <FaTiktok />
+        </a>
+        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-white ms-2">
+          <FaXTwitter />
+        </a>
+      </span>
     </div>
+
     <div className="topbar-options d-flex align-items-center">
       <a href="#" className="text-white text-decoration-none d-inline-flex align-items-center px-2">
         <i className="bi bi-bell me-1"></i> Notificações
@@ -23,7 +38,6 @@ export const NavbarTopbar = () => (
       <Link to="/ajuda" className="text-white text-decoration-none d-inline-flex align-items-center px-2">
         <i className="bi bi-question-circle me-1"></i> Ajuda
       </Link>
-      
       <span className="text-white mx-1">|</span>
       <Dropdown align="end">
         <Dropdown.Toggle variant="link" className="text-white text-decoration-none px-2">
