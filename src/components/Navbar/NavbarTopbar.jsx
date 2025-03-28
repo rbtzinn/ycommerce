@@ -20,9 +20,10 @@ export const NavbarTopbar = () => (
         <i className="bi bi-bell me-1"></i> Notificações
       </a>
       <span className="text-white mx-1">|</span>
-      <a href="#" className="text-white text-decoration-none d-inline-flex align-items-center px-2">
+      <Link to="/ajuda" className="text-white text-decoration-none d-inline-flex align-items-center px-2">
         <i className="bi bi-question-circle me-1"></i> Ajuda
-      </a>
+      </Link>
+      
       <span className="text-white mx-1">|</span>
       <Dropdown align="end">
         <Dropdown.Toggle variant="link" className="text-white text-decoration-none px-2">

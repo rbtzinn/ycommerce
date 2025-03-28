@@ -1,0 +1,16 @@
+/* Apenas o que não pode ser feito com Bootstrap */
+.hover-scale {
+    transition: transform 0.3s ease-in-out;
+}
+
+.hover-scale:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.image-logo-help {
+    display: block;
+    max-width: 200px;
+    height: auto;
+    margin: 20px auto;
+}

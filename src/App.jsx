@@ -5,14 +5,15 @@ import Carousel from "./components/Carousel";
 import Ads from "./components/Ads";
 import Container from "./components/Container";
 import Destaques from "./components/Destaques";
-import Login from "./components/Login";
-import Cadastro from "./components/Cadastro";
+import Login from "./pages/Login";
+import Cadastro from "./pages/Cadastro";
 import Footer from "./components/Footer/index.jsx";
 import Categorias from "./components/Categorias";
 import Reviews from "./components/Reviews";
 import { CartProvider } from "./context/CartContext";
-import CentralVendedor from "./components/CentralVendedor/index.jsx";
+import CentralVendedor from "./pages/CentralVendedor"
 import LojasPrincipais from "./components/LojasPrincipais/index.jsx";
+import HelpCenter from "./pages/HelpCenter/index.jsx";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -22,7 +23,7 @@ import './sdk.jsx';
 function AppContent() {
   const location = useLocation();
   const isCentralVendedor = location.pathname === "/central-vendedor";
-  const hasNavbar = !['/login', '/cadastro', '/central-vendedor'].includes(location.pathname);
+  const hasNavbar = !['/login', '/cadastro', '/central-vendedor', '/ajuda'].includes(location.pathname);
 
   return (
     <div className={hasNavbar ? "with-navbar" : ""}>
@@ -51,6 +52,7 @@ function AppContent() {
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/reviews/:id" element={<Reviews />} />
         <Route path="/central-vendedor" element={<CentralVendedor />} />
+        <Route path="/ajuda" element={<HelpCenter />} />
       </Routes>
 
       {/* Exibe o Footer onde necessário */}

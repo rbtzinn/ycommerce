@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import ProductReview from "../ProductReview";
+import ProductReview from "../../pages/ProductReview";
 
 const produtos = [
     { id: 1, nome: "Produto 1", descricao: "Sapato Nike branco", imagem: "/images/produto1.jpg" },
