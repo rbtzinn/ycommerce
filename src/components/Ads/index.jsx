@@ -1,5 +1,5 @@
 import React from "react";
-import "./Ads.css";
+import "./ads.css";
 
 const categories = [
   { icon: "🔥", text: "ATÉ 60% OFF" },
