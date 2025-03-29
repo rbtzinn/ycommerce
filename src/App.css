@@ -1,20 +1,9 @@
 body {
-  background: linear-gradient(to bottom, #0D6EFD, #0D6EFD, #f8f9fa, #f8f9fa, #f8f9fa);
+  background: linear-gradient(to bottom, #0D6EFD, #0D6EFD, #0D6EFD, #0D6EFD, #f8f9fa, #f8f9fa,  #f8f9fa, #f8f9fa, #f8f9fa);
   background-attachment: local;
   background-size: cover;
   background-repeat: no-repeat;
   min-height: 100vh;
-}
-
-
-.grid-container {
-  display: flex;
-  gap: 8px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  align-items: center;
-  position: relative;
-  z-index: 1;
 }
 
 .home-gradient-bg {

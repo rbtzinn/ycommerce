@@ -43,7 +43,7 @@ const Destaques = () => {
     return (
         <div className="container my-4 bg-white rounded p-3">
             <h4 className="mb-3">Ofertas em Destaque</h4>
-            <div id="carouselDestaques" className="carousel slide produtos-carousel" data-bs-ride="false">
+            <div id="carouselDestaques" className="carousel slide produtos-carousel w-" data-bs-ride="false">
                 <div className="carousel-inner">
                     {slides.map((slideProducts, index) => (
                         <div key={index} className={`carousel-item ${index === 0 ? "active" : ""}`}>

@@ -1,11 +1,27 @@
 import React from "react";
-import "./ads.css";
+import "./Ads.css";
+
+const categories = [
+  { icon: "🔥", text: "ATÉ 60% OFF" },
+  { icon: "🎟️", text: "CUPONS" },
+  { icon: "💰", text: "OFERTAS COM PIX" },
+  { icon: "⚡", text: "OFERTAS RELÂMPAGO" },
+  { icon: "📦", text: "FRETE GRÁTIS" },
+  { icon: "💣", text: "OFERTAS DO DIA" },
+  { icon: "⚡", text: "ENVIOS RÁPIDOS" },
+];
 
 const Ads = () => {
   return (
     <div className="ads-container">
-      <img src="https://img.freepik.com/fotos-premium/uma-caixa-com-uma-fita-amarrada-ao-redor-dela_337384-104388.jpg?w=1380" alt="Ad 1" />
-      <img src="https://img.freepik.com/fotos-premium/uma-cesta-de-presentes-em-uma-prateleira-em-um-quarto-de-hospital_337384-106078.jpg?w=1380" alt="Ad 2" />
+      {categories.map((item, index) => (
+        <div key={index} className="ads-item">
+          <div className="ads-circle">
+            <span className="ads-icon">{item.icon}</span>
+          </div>
+          <p className="ads-text">{item.text}</p>
+        </div>
+      ))}
     </div>
   );
 };
