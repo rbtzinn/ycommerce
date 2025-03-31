@@ -13,3 +13,10 @@
     height: auto;
     margin: 20px auto;
 }
+
+@media (max-width: 576px) {
+    .arrow {
+        margin-top: 8px !important;
+        margin-left: 8px !important;
+    }
+}

@@ -42,7 +42,7 @@ const HelpCenter = () => {
                 {/* Botão de voltar posicionado dentro do banner */}
                 <Button 
                     variant="link" 
-                    className="text-white position-absolute top-0 start-0 p-4 mt-4 ms-4" 
+                    className="text-white position-absolute top-0 start-0 p-4 mt-4 ms-4 arrow" 
                     onClick={() => navigate('/')}
                     aria-label="Voltar"
                 > 

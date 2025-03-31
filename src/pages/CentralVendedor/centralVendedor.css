@@ -101,20 +101,3 @@
     padding-bottom: 0.75rem;
     border-bottom: 1px solid #eee;
   }
-  
-  /* Responsividade */
-  @media (max-width: 992px) {
-    .vendor-sidebar {
-      position: fixed;
-      z-index: 1030;
-      margin-left: -280px;
-    }
-    
-    .vendor-sidebar.open {
-      margin-left: 0;
-    }
-    
-    .vendor-main-content {
-      margin-left: 0;
-    }
-  }

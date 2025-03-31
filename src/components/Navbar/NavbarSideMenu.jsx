@@ -11,12 +11,16 @@ export const NavbarSideMenu = ({ menuOpen, toggleMenu }) => (
         <img src={logomob} alt="LOGO" className="img-fluid mt-2" style={{ width: '40px' }} />
       </div>
       <ul className="list-unstyled ms-3">
-        <li className="py-1"><a href="#" className="text-white text-decoration-none d-block py-1">Central do Vendedor</a></li>
+        <li className="py-1"><Link to="/central-vendedor" className="text-white text-decoration-none d-inline-flex align-items-center">
+          Central do Vendedor
+        </Link></li>
         <li className="py-1"><a href="#" className="text-white text-decoration-none d-block py-1">Vender no site</a></li>
         <li className="py-1"><a href="#" className="text-white text-decoration-none d-block py-1">Baixe o App</a></li>
         <li className="py-1"><a href="#" className="text-white text-decoration-none d-block py-1">Siga-nos</a></li>
         <li className="py-1"><a href="#" className="text-white text-decoration-none d-block py-1">Notificações</a></li>
-        <li className="py-1"><a href="#" className="text-white text-decoration-none d-block py-1">Ajuda</a></li>
+        <li className="py-1"><Link to="/ajuda" className="text-white text-decoration-none d-inline-flex align-items-center">
+          <i className="bi bi-question-circle me-1"></i> Ajuda
+        </Link></li>
         <li className="py-1">
           <Dropdown>
             <Dropdown.Toggle variant="link" className="text-white text-decoration-none d-block py-1 pt-br" style={{ fontSize: "12px", padding: 0 }}>
