@@ -14,7 +14,7 @@ export const NavbarTopbar = () => {
   };
 
   return (
-    <div className="topbar-section d-none d-lg-flex justify-content-between py-1">
+    <div className="container topbar-section d-none d-lg-flex justify-content-between py-1">
       <div className="topbar-links d-flex align-items-center">
         {/* Campo de CEP estilizado */}
         <div className="cep-container d-flex align-items-center me-3">
