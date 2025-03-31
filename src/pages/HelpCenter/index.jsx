@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import {
     FaSearch,
     FaStore,
@@ -7,7 +8,8 @@ import {
     FaGift,
     FaUndo,
     FaInfoCircle,
-    FaUserTie
+    FaUserTie,
+    FaArrowLeft
 } from "react-icons/fa";
 import {
     Container,
@@ -21,6 +23,8 @@ import "./helpCenter.css";
 import logo from '../../assets/images/ycommerce/YCommerce---letreiro.png'
 
 const HelpCenter = () => {
+    const navigate = useNavigate();
+    
     const categories = [
         { icon: <FaStore />, title: "Compre com a Loja", description: "Saiba como comprar", color: "#FF6F61" },
         { icon: <FaTruck />, title: "Pedidos e Envio", description: "Acompanhe seu pedido", color: "#40A9FF" },
@@ -33,11 +37,21 @@ const HelpCenter = () => {
 
     return (
         <div className="bg-light">
-            {/* Banner de pesquisa */}
-            <div className="bg-primary text-white py-5">
+            {/* Banner de pesquisa com botão de voltar integrado */}
+            <div className="bg-primary text-white py-5 text-center position-relative">
+                {/* Botão de voltar posicionado dentro do banner */}
+                <Button 
+                    variant="link" 
+                    className="text-white position-absolute top-0 start-0 p-4 mt-4 ms-4" 
+                    onClick={() => navigate('/')}
+                    aria-label="Voltar"
+                > 
+                    <FaArrowLeft size={24} />
+                </Button>
+                
                 <Container>
-                    <img src={logo} className="image-logo-help" />
-                    <h1 className="mb-4 text-center">Oi, como podemos ajudar?</h1>
+                    <img src={logo} className="image-logo-help" alt="Logo" />
+                    <h1 className="mb-4">Oi, como podemos ajudar?</h1>
                     <Row className="justify-content-center">
                         <Col md={6}>
                             <InputGroup className="mb-3 shadow">

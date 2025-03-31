@@ -82,6 +82,12 @@
   border: none;
 }
 
+.carousel-control-prev:disabled,
+.carousel-control-next:disabled {
+  display: none;
+}
+  
+
 .produtos-carousel .carousel-control-prev {
   left: -60px;
 }

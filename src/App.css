@@ -1,5 +1,5 @@
 body {
-  background: linear-gradient(to bottom, #0D6EFD, #0D6EFD, #2b7af1, #f8f9fa, #f8f9fa,  #f8f9fa, #f8f9fa, #f8f9fa);
+  background: linear-gradient(to bottom, #0D6EFD, #0D6EFD, #2b7af1, #f8f9fa,  #f8f9fa, #f8f9fa, #f8f9fa);
   background-attachment: local;
   background-size: cover;
   background-repeat: no-repeat;
@@ -53,23 +53,15 @@ body {
     display: block;
   }
 
-  .carousel-wrapper {
-    margin-bottom: 8px;
-  }
-
-  .ads-wrapper img {
-    max-height: 80px;
-  }
-
   .with-navbar {
     padding-top: 50px;
   }
 
   body {
-    background: linear-gradient(to bottom, #f8f9fa, #f8f9fa, #f8f9fa);
+    background: linear-gradient(to bottom, #0D6EFD, #0D6EFD, #5498ff, #f8f9fa, #f8f9fa, #f8f9fa, #f8f9fa, #f8f9fa,  #f8f9fa, #f8f9fa, #f8f9fa);
     background-attachment: local;
     background-size: cover;
     background-repeat: no-repeat;
-    min-height: 100vh;
+    margin-top: 40px;
   }
 }

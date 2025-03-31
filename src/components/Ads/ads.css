@@ -1,41 +1,28 @@
-.ads-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 2rem;
-  padding: 2rem;
-  margin: 0 auto;
-}
-
 .ads-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   transition: all 0.3s ease;
   cursor: pointer;
 }
 
 .ads-circle {
-  width: 100px;
-  height: 100px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   border: 1px solid #0D6EFD;
   display: flex;
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-  box-shadow: 0 4px 15px #0D6EFD;
+  box-shadow: 0 2px 8px rgba(13, 110, 253, 0.3);
   transition: all 0.3s ease;
 }
 
 .ads-item:hover .ads-circle {
   transform: scale(1.1);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.4);
 }
 
 .ads-icon {
-  font-size: 50px;
+  font-size: 1.5rem;
   transition: transform 0.3s ease;
 }
 
@@ -44,36 +31,16 @@
 }
 
 .ads-text {
-  margin-top: 0.8rem;
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   font-weight: 600;
-  color: #fff;
-  text-align: center;
+  color: #212529;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Responsividade */
-@media (max-width: 768px) {
-  .ads-container {
-    gap: 1.5rem;
-  }
-  
-  .ads-circle {
-    width: 70px;
-    height: 70px;
-  }
-  
-  .ads-icon {
-    font-size: 2rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .ads-container {
-    gap: 1rem;
-    padding: 1rem;
-  }
-  
+@media (min-width: 576px) {
   .ads-circle {
     width: 60px;
     height: 60px;
@@ -85,5 +52,38 @@
   
   .ads-text {
     font-size: 0.8rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .ads-circle {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .ads-icon {
+    font-size: 2rem;
+  }
+  
+  .ads-text {
+    font-size: 0.9rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .ads-circle {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .ads-circle {
+    width: 90px;
+    height: 90px;
+  }
+  
+  .ads-icon {
+    font-size: 2.5rem;
   }
 }

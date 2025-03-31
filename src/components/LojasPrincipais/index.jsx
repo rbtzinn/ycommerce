@@ -17,8 +17,8 @@ const LojasPrincipais = () => {
 
     return (
         <>
+            <div className="container my-4 bg-white rounded p-3">
             <h4>Lojas principais</h4>
-            <div className="container-dest rounded p-3 lojas-container d-flex mb-4 bg-light">
                 {stores.map(({ id, logo, name }) => (
                     <a className="loja text-dark text-decoration-none" key={id} href={`/loja/${id}`}>
                         <div className="img" style={{ backgroundImage: `url('${logo}')` }}></div>
