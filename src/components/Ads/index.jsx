@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import "./ads.css";
 
 const categories = [
@@ -15,18 +15,16 @@ const categories = [
 const Ads = () => {
   return (
     <Container fluid className="ads-container py-3">
-      <Row className="g-2 g-md-3 justify-content-center">
+      <div className="ads-scroll-container">
         {categories.map((item, index) => (
-          <Col xs={4} sm={3} md={2} lg={2} xl={1} key={index} className="px-1 px-md-2">
-            <div className="ads-item text-center p-1">
-              <div className="ads-circle mx-auto mb-2">
-                <span className="ads-icon">{item.icon}</span>
-              </div>
-              <p className="ads-text mb-0 text-white">{item.text}</p>
+          <div key={index} className="ads-item text-center">
+            <div className="ads-circle mx-auto mb-2">
+              <span className="ads-icon">{item.icon}</span>
             </div>
-          </Col>
+            <p className="ads-text mb-0">{item.text}</p>
+          </div>
         ))}
-      </Row>
+      </div>
     </Container>
   );
 };

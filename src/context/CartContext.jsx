@@ -8,17 +8,38 @@ export const CartProvider = ({ children }) => {
     const [notification, setNotification] = useState(null);
 
     const addToCart = (product) => {
-        setCartItems([...cartItems, product]);
+        setCartItems((prevCart) => {
+            const existingProduct = prevCart.find((item) => item.id === product.id);
+
+            if (existingProduct) {
+                return prevCart.map((item) =>
+                    item.id === product.id ? { ...item, quantidade: (item.quantidade || 1) + 1 } : item
+                );
+            }
+
+            return [...prevCart, { ...product, quantidade: 1 }];
+        });
+
         setNotification("Produto adicionado ao carrinho!");
         setTimeout(() => setNotification(null), 3000);
     };
 
-    const removeFromCart = (indexToRemove) => {
-        const newCartItems = cartItems.filter((_, index) => index !== indexToRemove);
-        setCartItems(newCartItems);
+
+    const removeFromCart = (productId) => {
+        setCartItems((prevCart) => {
+            return prevCart
+                .map((item) =>
+                    item.id === productId
+                        ? { ...item, quantidade: item.quantidade - 1 }
+                        : item
+                )
+                .filter((item) => item.quantidade > 0);
+        });
+
         setNotification("Produto removido do carrinho!");
         setTimeout(() => setNotification(null), 3000);
     };
+
 
     return (
         <CartContext.Provider value={{ cartItems, addToCart, removeFromCart }}>

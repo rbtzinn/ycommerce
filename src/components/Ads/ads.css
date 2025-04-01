@@ -1,89 +1,94 @@
-.ads-item {
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
+  .ads-item {
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
 
-.ads-circle {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  border: 1px solid #0D6EFD;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-  box-shadow: 0 2px 8px rgba(13, 110, 253, 0.3);
-  transition: all 0.3s ease;
-}
-
-.ads-item:hover .ads-circle {
-  transform: scale(1.1);
-  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.4);
-}
-
-.ads-icon {
-  font-size: 1.5rem;
-  transition: transform 0.3s ease;
-}
-
-.ads-item:hover .ads-icon {
-  transform: scale(1.2);
-}
-
-.ads-text {
-  font-size: 0.7rem;
-  font-weight: 600;
-  color: #212529;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* Responsividade */
-@media (min-width: 576px) {
   .ads-circle {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid #0D6EFD;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    box-shadow: 0 2px 8px rgba(13, 110, 253, 0.3);
+    transition: all 0.3s ease;
   }
-  
+
+  .ads-item:hover .ads-circle {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(13, 110, 253, 0.4);
+  }
+
   .ads-icon {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
   }
-  
+
+  .ads-item:hover .ads-icon {
+    transform: scale(1.2);
+  }
+
   .ads-text {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #212529;
+    white-space: normal; /* Permite que o texto quebre */
+    overflow: visible; /* Garante que o texto seja visível */
+    text-overflow: unset; /* Remove as reticências */
+    word-wrap: break-word; /* Garante que palavras longas quebrem corretamente */
+    text-align: center; /* Centraliza o texto */
+  }
+
+
+  /* Responsividade */
+  /* Adiciona rolagem apenas no celular */
+@media (max-width: 768px) {
+  .ads-scroll-container {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch; /* Suaviza o scroll no iOS */
+    scrollbar-width: none; /* Remove a barra de rolagem no Firefox */
+  }
+
+  .ads-scroll-container::-webkit-scrollbar {
+    display: none; /* Oculta a barra de rolagem no Chrome e Edge */
+  }
+
+  .ads-item {
+    flex: 0 0 auto; /* Mantém os itens em linha */
+    width: 100px; /* Define um tamanho fixo para os itens */
+    margin-right: 10px;
   }
 }
 
-@media (min-width: 768px) {
-  .ads-circle {
-    width: 70px;
-    height: 70px;
+/* Mantém a disposição normal em telas maiores */
+@media (min-width: 769px) {
+  .ads-scroll-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
   }
-  
-  .ads-icon {
-    font-size: 2rem;
-  }
-  
-  .ads-text {
-    font-size: 0.9rem;
-  }
+
 }
 
-@media (min-width: 992px) {
-  .ads-circle {
-    width: 80px;
-    height: 80px;
-  }
-}
 
-@media (min-width: 1200px) {
-  .ads-circle {
-    width: 90px;
-    height: 90px;
+  @media (min-width: 992px) {
+    .ads-circle {
+      width: 80px;
+      height: 80px;
+    }
   }
-  
-  .ads-icon {
-    font-size: 2.5rem;
+
+  @media (min-width: 1200px) {
+    .ads-circle {
+      width: 90px;
+      height: 90px;
+    }
+    
+    .ads-icon {
+      font-size: 2.5rem;
+    }
   }
-}
